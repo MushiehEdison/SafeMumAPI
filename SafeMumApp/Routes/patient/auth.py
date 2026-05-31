@@ -15,8 +15,6 @@ bp = Blueprint('patient_auth', __name__)
 # ─────────────────────────────────────────────
 # Redis client for OTP storage
 # ─────────────────────────────────────────────
-# Requires REDIS_URL in .env, e.g. redis://localhost:6379/0
-# Falls back to a simple in-process dict for local dev if Redis is unavailable.
 try:
     _redis = redis.from_url(os.environ.get("REDIS_URL", "redis://localhost:6379/0"), decode_responses=True)
     _redis.ping()
@@ -53,30 +51,16 @@ def _delete_otp(phone: str):
 # ─────────────────────────────────────────────
 @bp.route('/register', methods=['POST'])
 def register():
-    """
-    Register a new patient (passwordless).
-    Body JSON:
-        name         str  required
-        phone        str  required  (digits only, no country code)
-        countryCode  str  required  e.g. "+237"
-        email        str  optional
-        language     str  optional  default "English"
-        userType     str  required  "pregnant" | "loss"
-        latitude     float optional
-        longitude    float optional
-        locationName str  optional
-    """
     data = request.get_json(silent=True) or {}
 
-    # ── Validate required fields ──────────────────────────────────────────────
-    name         = (data.get("name") or "").strip()
-    phone_raw    = (data.get("phone") or "").strip()
-    country_code = (data.get("countryCode") or "").strip()
-    email        = (data.get("email") or "").strip() or None
-    language     = (data.get("language") or "English").strip()
-    user_type    = (data.get("userType") or "").strip()
-    latitude     = data.get("latitude")
-    longitude    = data.get("longitude")
+    name          = (data.get("name") or "").strip()
+    phone_raw     = (data.get("phone") or "").strip()
+    country_code  = (data.get("countryCode") or "").strip()
+    email         = (data.get("email") or "").strip() or None
+    language      = (data.get("language") or "English").strip()
+    user_type     = (data.get("userType") or "").strip()
+    latitude      = data.get("latitude")
+    longitude     = data.get("longitude")
     location_name = (data.get("locationName") or "").strip() or None
 
     if not name:
@@ -97,12 +81,11 @@ def register():
     if existing:
         code = str(random.randint(100000, 999999))
         _set_otp(full_phone, code)
-        result = send_otp_sms(full_phone, code)
-        if not result["success"]:
-            return jsonify({"error": f"Could not send OTP: {result['message']}"}), 502
+        print(f"[DEV OTP] {full_phone} → {code}")
+        # ── CHANGED: added dev_otp to response ──
         return jsonify({
             "message": "Account already exists. OTP sent for verification.",
-            "data": {"phone": full_phone, "existing": True}
+            "data": {"phone": full_phone, "existing": True, "dev_otp": code}
         }), 200
 
     # ── Validate email if provided ────────────────────────────────────────────
@@ -112,14 +95,13 @@ def register():
         if User.query.filter_by(email=email).first():
             return jsonify({"error": "Email already in use"}), 409
 
-
     new_user = User(
         name      = name,
-        email     = email,                    # nullable=True after model fix
+        email     = email,
         phone     = full_phone,
         language  = language,
         gender    = "female",
-        user_type = user_type,                # requires model column
+        user_type = user_type,
         latitude  = float(latitude) if latitude is not None else None,
         longitude = float(longitude) if longitude is not None else None,
     )
@@ -131,22 +113,22 @@ def register():
         db.session.rollback()
         return jsonify({"error": f"Could not create account: {str(e)}"}), 500
 
-    # ── Send OTP ──────────────────────────────────────────────────────────────
+    # ── Generate OTP ──────────────────────────────────────────────────────────
     code = str(random.randint(100000, 999999))
     _set_otp(full_phone, code)
-    print(f"[DEV OTP] {full_phone} → {code}")  
+    print(f"[DEV OTP] {full_phone} → {code}")
     result = {"success": True, "message": "dev mode"}
 
     if not result["success"]:
-        # User was created — don't roll back. Let them retry via /send-otp.
         return jsonify({
             "message": "Account created but OTP delivery failed. Please use resend.",
             "data": {"phone": full_phone, "existing": False, "otp_sent": False}
         }), 207
 
+    # ── CHANGED: added dev_otp to response ──
     return jsonify({
         "message": "Registration successful. OTP sent.",
-        "data": {"phone": full_phone, "name": new_user.name, "existing": False, "otp_sent": True}
+        "data": {"phone": full_phone, "name": new_user.name, "existing": False, "otp_sent": True, "dev_otp": code}
     }), 201
 
 
@@ -155,12 +137,6 @@ def register():
 # ─────────────────────────────────────────────
 @bp.route('/send-otp', methods=['POST'])
 def send_otp():
-    """
-    Send / resend OTP to an already-registered patient.
-    Body JSON:
-        phone        str  required  (digits only)
-        countryCode  str  required
-    """
     data = request.get_json(silent=True) or {}
 
     phone_raw    = (data.get("phone") or "").strip()
@@ -177,11 +153,10 @@ def send_otp():
 
     code = str(random.randint(100000, 999999))
     _set_otp(full_phone, code)
-
     print(f"[DEV OTP] {full_phone} → {code}")
-    result = {"success": True, "message": "dev mode"}
 
-    return jsonify({"message": "OTP sent", "data": {"phone": full_phone}}), 200
+    # ── CHANGED: added dev_otp to response ──
+    return jsonify({"message": "OTP sent", "data": {"phone": full_phone, "dev_otp": code}}), 200
 
 
 # ─────────────────────────────────────────────
@@ -189,13 +164,6 @@ def send_otp():
 # ─────────────────────────────────────────────
 @bp.route('/verify-otp', methods=['POST'])
 def verify_otp():
-    """
-    Verify OTP and issue a JWT stored in an httpOnly cookie.
-    Body JSON:
-        phone        str  required
-        countryCode  str  required
-        otp          str  required  6-digit code
-    """
     data = request.get_json(silent=True) or {}
 
     phone_raw    = (data.get("phone") or "").strip()
@@ -211,16 +179,14 @@ def verify_otp():
     if not user:
         return jsonify({"error": "No account found for this phone number"}), 404
 
-    # ── Check OTP ─────────────────────────────────────────────────────────────
     stored_code = _get_otp(full_phone)
     if not stored_code:
         return jsonify({"error": "OTP expired or not found. Please request a new one."}), 400
     if stored_code != otp_input:
         return jsonify({"error": "Incorrect OTP"}), 401
 
-    _delete_otp(full_phone)  # single-use
+    _delete_otp(full_phone)
 
-    # ── Issue JWT ─────────────────────────────────────────────────────────────
     access_token = create_access_token(
         identity=str(user.id),
         additional_claims={"role": "patient"},
@@ -246,16 +212,12 @@ def verify_otp():
 @bp.route('/me', methods=['GET'])
 @jwt_required()
 def me():
-    """
-    Return the currently authenticated patient.
-    Called on app load by UserAuthContext to restore session.
-    """
     user_id = get_jwt_identity()
     user    = User.query.get(int(user_id))
- 
+
     if not user:
         return jsonify({"error": "User not found"}), 404
- 
+
     return jsonify({
         "message": "ok",
         "data": {
@@ -267,6 +229,7 @@ def me():
             "userType": user.user_type,
         }
     }), 200
+
 
 # ─────────────────────────────────────────────
 # POST /patient/auth/logout
