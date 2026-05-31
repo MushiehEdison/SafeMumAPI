@@ -7,16 +7,16 @@ __pycache__/
 .Python
 
 # ===== VIRTUAL ENVIRONMENT =====
-safemum/
+safemum/Lib/
+safemum/Include/
+safemum/Scripts/
+safemum/pyvenv.cfg
 env/
 .env/
 .venv/
 ENV/
-Lib/
-Scripts/
-Include/
-pyvenv.cfg
-# ===== ENVIRONMENT VARIABLES (CRITICAL - never push these) =====
+
+# ===== ENVIRONMENT VARIABLES =====
 .env
 .env.local
 .env.production
