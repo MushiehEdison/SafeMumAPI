@@ -21,7 +21,7 @@ class Config:
     JWT_COOKIE_CSRF_PROTECT = False  # set True in production
 
     # CORS
-    FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+    FRONTEND_URL = os.getenv("FRONTEND_URL", "https://safemum.netlify.app")
 
     # Anthropic Claude API
     ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")

@@ -26,7 +26,7 @@ def create_app():
     CORS(
         app,
         supports_credentials=True,
-        origins=[app.config["FRONTEND_URL"], 'http://localhost:5173'],
+        origins=[app.config["FRONTEND_URL"], 'https://safemum.netlify.app'],
     )
 
     # Import models so Flask-Migrate detects all tables
@@ -109,7 +109,7 @@ def create_app():
     @app.after_request
     def add_cors_headers(response):
         origin = request.headers.get("Origin", "")
-        allowed = [app.config.get("FRONTEND_URL", ""), "http://localhost:5173"]
+        allowed = [app.config.get("FRONTEND_URL", ""), "https://safemum.netlify.app"]
         if origin in allowed:
             response.headers["Access-Control-Allow-Origin"] = origin
             response.headers["Access-Control-Allow-Credentials"] = "true"
