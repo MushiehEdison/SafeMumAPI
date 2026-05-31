@@ -1,7 +1,13 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'safemum'))
+# Add the directory containing app.py to the path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+import dotenv
+dotenv.load_dotenv()
+
+print("DEBUG URI:", os.environ.get("SQLALCHEMY_DATABASE_URI", "NOT FOUND"))
 
 from SafeMumApp import create_app, db
 
