@@ -1,0 +1,46 @@
+county,patient_count,facility_count,need_score,cluster
+Nairobi,540,29,18.0,high_need
+Mombasa,263,8,29.22222222222222,high_need
+Kisii,219,11,18.25,high_need
+Nakuru,194,14,12.933333333333334,medium_need
+Kiambu,184,17,10.222222222222221,medium_need
+Meru,142,11,11.833333333333334,medium_need
+Uasin Gishu,135,5,22.5,high_need
+Kisumu,133,9,13.3,medium_need
+Kakamega,113,10,10.272727272727273,medium_need
+Kilifi,95,10,8.636363636363637,medium_need
+Nyeri,81,6,11.571428571428571,medium_need
+Bungoma,80,9,8.0,medium_need
+Homa Bay,76,7,9.5,medium_need
+Embu,72,8,8.0,medium_need
+Laikipia,68,4,13.6,medium_need
+Garissa,67,11,5.583333333333333,low_need
+Machakos,56,9,5.6,low_need
+Migori,55,11,4.583333333333333,low_need
+Makueni,54,20,2.5714285714285716,low_need
+West Pokot,54,2,18.0,high_need
+Kitui,51,11,4.25,low_need
+Murang'A,45,12,3.4615384615384617,low_need
+Nyandarua,39,7,4.875,low_need
+Wajir,38,9,3.8,low_need
+Kajiado,38,6,5.428571428571429,low_need
+Siaya,36,3,9.0,medium_need
+Kericho,32,3,8.0,medium_need
+Vihiga,25,3,6.25,low_need
+Elgeyo Marakwet,23,7,2.875,low_need
+Baringo,22,6,3.142857142857143,low_need
+Isiolo,21,4,4.2,low_need
+Narok,21,5,3.5,low_need
+Trans Nzoia,21,3,5.25,low_need
+Tharaka Nithi,19,5,3.1666666666666665,low_need
+Taita Taveta,16,5,2.6666666666666665,low_need
+Kwale,16,5,2.6666666666666665,low_need
+Nyamira,16,4,3.2,low_need
+Busia,12,2,4.0,low_need
+Turkana,11,4,2.2,low_need
+Kirinyaga,8,2,2.6666666666666665,low_need
+Bomet,7,3,1.75,low_need
+Tana River,6,2,2.0,low_need
+Nandi,4,2,1.3333333333333333,low_need
+Samburu,4,1,2.0,low_need
+Lamu,3,3,0.75,low_need

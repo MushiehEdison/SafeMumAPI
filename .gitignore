@@ -1,0 +1,67 @@
+# ===== PYTHON =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.Python
+
+# ===== VIRTUAL ENVIRONMENT =====
+safemum/
+env/
+.env/
+.venv/
+ENV/
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
+# ===== ENVIRONMENT VARIABLES (CRITICAL - never push these) =====
+.env
+.env.local
+.env.production
+.env.development
+*.env
+
+# ===== FLASK SPECIFIC =====
+instance/
+.webassets-cache
+flask_session/
+
+# ===== DATABASE =====
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+
+# ===== UPLOADS & MEDIA =====
+uploads/
+media/
+
+# ===== LOGS =====
+*.log
+logs/
+
+# ===== TESTING =====
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# ===== IDEs =====
+.vscode/
+.idea/
+*.suo
+*.swp
+
+# ===== OS FILES =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== COMPILED/BUILD =====
+dist/
+build/
+*.egg-info/
+*.egg

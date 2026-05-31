@@ -1,0 +1,953 @@
+ID,Child_Type,Union,Gender,Alive,Livewith,Relation,Caregiver,Slum,BINT_TIME1_DATE,Child_Age
+5,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,16.52566735112936
+5,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,13.27857631759069
+5,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,9.724845995893224
+5,Children From Other Unions,1,Male,No,,Biological Mother,, ,20 Jan 16,6.803559206023272
+6,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,7.159479808350445
+7,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,15.66598220396988
+7,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,10.68309377138946
+7,Children From Other Unions,3,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,8.125941136208077
+9,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,8.766598220396988
+9,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,7.685147159479809
+10,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,1.281314168377823
+14,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,20.87063655030801
+14,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,12.78576317590691
+14,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,8.544832306639288
+14,Children With Biological Father,0,Female,No,,Biological Mother,, ,20 Jan 16,11.12936344969199
+14,Non-Biological Children Under Five,,Male,,Yes,Maternal Grandmother,Biolgical Mother, ,20 Jan 16,.5557837097878165
+14,Non-Biological Children Under Five,,Female,,Yes,Maternal Grandmother,Biolgical Mother, ,20 Jan 16,.2190280629705681
+16,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,17.97399041752224
+16,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,12.54209445585216
+17,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,13.2621492128679
+17,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,11.61396303901437
+18,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,10.05338809034908
+18,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,7.805612594113621
+21,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,16.30390143737166
+21,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,9.88911704312115
+28,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,11.69062286105407
+28,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,9.47296372347707
+28,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,5.379876796714579
+33,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,8.63791923340178
+33,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,5.968514715947981
+35,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,10.18480492813142
+37,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,7.603011635865846
+39,Children From Other Unions,1,Male,No,,Biological Mother,, ,21 Jan 16,13.05407255304586
+39,Children From Other Unions,1,Female,No,,Biological Mother,, ,21 Jan 16,11.38672142368241
+39,Children From Other Unions,1,Male,No,,Biological Mother,, ,21 Jan 16,7.5564681724846
+40,Children From Other Unions,1,Male,Yes,No,Biological Mother,Non-Relative, ,22 Jan 16,5.078713210130048
+42,Children From Other Unions,1,Female,No,,Biological Mother,, ,21 Jan 16,5.054072553045859
+44,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,23.07186858316222
+44,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,14.76796714579056
+46,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,15.28542094455852
+46,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,9.114305270362765
+50,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,9.730321697467488
+52,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,3.45242984257358
+53,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,12.1533196440794
+53,Non-Biological Children Under Five,,Male,,Yes,Maternal Aunt,Biolgical Mother, ,23 Jan 16,5.226557152635182
+54,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,.054757015742642
+55,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Jan 97,-4.922655715263518
+55,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Jan 97,-6.469541409993155
+56,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,22 Jan 16,22.05612594113621
+56,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,22 Jan 16,20.05749486652977
+58,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,5.483915126625599
+60,Children From Other Unions,1,Male,No,,Biological Mother,, ,24 Jan 16,11.72073921971253
+63,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,6.737850787132102
+64,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,18.81177275838467
+64,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,14.81177275838467
+64,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,10.56262833675565
+64,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,13.07049965776865
+65,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,20.290212183436
+65,Children With Biological Father,0,Female,Yes,No,Biological Mother,Biological Father, ,20 Jan 16,15.1047227926078
+65,Children With Biological Father,0,Male,Yes,No,Biological Mother,Biological Father, ,20 Jan 16,13.29226557152635
+65,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,11.28268309377139
+65,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,8.377823408624231
+65,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,5.998631074606434
+65,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,1.71937029431896
+66,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,8.898015058179329
+66,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,8.060232717316905
+67,Children With Biological Father,0,Male,No,,Biological Mother,, ,23 Jan 16,12.26557152635181
+68,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,12.08761122518823
+68,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,2.119096509240246
+71,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,22.40109514031485
+71,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,19.91512662559891
+71,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,13.16632443531828
+71,Children From Other Unions,2,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,6.072553045859
+72,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,15.00616016427105
+72,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,12.25735797399042
+73,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,8.432580424366872
+73,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,4.692676249144422
+74,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,6.357289527720739
+75,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,4.219028062970568
+76,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,7.096509240246407
+76,Non-Biological Children Under Five,,Male,,Yes,Maternal Aunt,Biolgical Mother, ,24 Jan 16,6.061601642710472
+79,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,.6981519507186859
+81,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,13.22655715263518
+84,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,12.55578370978782
+86,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,1.130732375085558
+87,Children From Other Unions,2,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,115.6413415468857
+87,Children From Other Unions,2,Female,Yes,No,Biological Mother,Other Relative (Maternal), ,22 Jan 16,23.14031485284052
+88,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,8.164271047227926
+88,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,.3066392881587953
+90,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,8.101300479123887
+92,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,25 Jan 16,9.612594113620808
+96,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,12.42710472279261
+96,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,9.639972621492129
+98,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,14.45311430527036
+98,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,12.6652977412731
+98,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,10.65297741273101
+99,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,3.586584531143053
+100,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,2.225872689938398
+101,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,10.92402464065708
+101,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,1.212867898699521
+101,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,3.46611909650924
+101,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,6.086242299794661
+102,Children With Biological Father,0,Female,No,,Biological Mother,, ,26 Jan 16,.8898015058179329
+103,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,2.001368925393566
+105,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,20.6570841889117
+105,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,13.65092402464066
+105,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,10.8227241615332
+109,Children From Other Unions,1,Female,Yes,No,Biological Mother,Maternal Grandparent, ,27 Jan 16,19.06913073237509
+111,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,27 Jan 16,1.193702943189596
+111,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,27 Jan 16,17.52498288843258
+111,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,27 Jan 16,14.05886379192334
+111,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,27 Jan 16,10.16290212183436
+112,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,13.37440109514031
+112,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,3.134839151266256
+112,Children From Other Unions,3,Male,Yes,No,Biological Mother,Maternal Grandparent, ,27 Jan 16,10.48870636550308
+113,Children From Other Unions,1,,,,Biological Mother,, ,27 Jan 16,.7337440109514032
+115,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,7.047227926078029
+116,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,13.97125256673511
+116,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,11.05817932922656
+116,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,2.863791923340178
+117,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,19.81382614647502
+117,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,13.98220396988364
+117,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,7.819301848049282
+117,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,.0082135523613963
+118,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,15.7864476386037
+119,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,8.008213552361397
+120,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,2.154688569472964
+126,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,20.02464065708419
+126,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,17.90554414784394
+126,Children From Other Unions,3,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,12.90622861054073
+127,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,12.87885010266941
+127,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,8.577686516084873
+131,Children With Biological Father,0,,,,Biological Mother,, ,28 Jan 16,8.05201916495551
+132,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,5.054072553045859
+132,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,1.505817932922656
+133,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,28 Jan 16,8.484599589322382
+133,Children Not Mentioned,,Male,Yes,No,,Non-Relative,Kawangware,28 Jan 16,20.12320328542095
+133,Children Not Mentioned,,Female,Yes,No,,Non-Relative, ,28 Jan 16,22.32717316906228
+134,Children With Biological Father,0,Female,Yes,No,Biological Mother,Biolgical Mother, ,28 Jan 16,8.030116358658454
+134,Children With Biological Father,0,Male,Yes,No,Biological Mother,Biolgical Mother, ,28 Jan 16,8.030116358658454
+134,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,28 Jan 16,14.53251197809719
+136,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,3.159479808350445
+137,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,3.069130732375085
+139,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,9.333333333333334
+140,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,10.20944558521561
+141,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,3.816563997262149
+142,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,11.48528405201916
+142,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,9.278576317590691
+143,Children With Biological Father,0,Female,Yes,No,Biological Mother,Paternal Grandparent, ,29 Jan 16,9.325119780971937
+143,Children With Biological Father,0,Female,Yes,No,Biological Mother,Paternal Grandparent, ,29 Jan 16,6.559890485968515
+145,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,15.23066392881588
+145,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,8.728268309377139
+145,Non-Biological Children Under Five,,Female,,Yes,Maternal Aunt,Biolgical Mother, ,26 Jan 16,2.945927446954141
+146,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,8.845995893223819
+148,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,8.114989733059549
+149,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,12.58042436687201
+149,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,11.40862422997947
+151,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,4.062970568104038
+153,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,.4134154688569473
+154,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,16.2984257357974
+154,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,5.371663244353183
+155,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,.7912388774811773
+156,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,7.775496235455168
+159,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,7.493497604380561
+161,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,116.0766598220397
+161,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,116.0766598220397
+161,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,15.83025325119781
+161,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,14.07802874743327
+161,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,11.07734428473648
+161,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,7.436002737850787
+161,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,3.559206023271732
+162,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,16.26830937713894
+162,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,11.79739904175223
+162,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,8.10403832991102
+164,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,23.66324435318275
+165,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,1.648186173853525
+166,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,9.344284736481862
+167,Children From Other Unions,1,Male,No,,Biological Mother,, ,29 Jan 16,.7775496235455168
+168,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,12.97741273100616
+169,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,1.125256673511294
+170,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,5.566050650239562
+170,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,21.22655715263518
+170,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,19.21423682409309
+170,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,12.72826830937714
+172,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,12.18891170431212
+172,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,7.145790554414784
+174,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,30 Jan 16,12.93634496919918
+174,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,30 Jan 16,9.94113620807666
+175,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,.2272416153319644
+175,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,11.07460643394935
+176,Non-Biological Children Under Five,,Female,,Yes,Sibling (Sister),Biolgical Mother, ,30 Jan 16,4.079397672826831
+177,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,.7693360711841205
+178,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,13.54414784394251
+178,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,12.3750855578371
+179,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,9.36892539356605
+179,Children From Other Unions,1,Male,Yes,No,Biological Mother,Other Relative (Maternal), ,30 Jan 16,14.71047227926078
+180,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,15.19233401779603
+180,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,11.66872005475702
+183,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,.2409308692676249
+184,Non-Biological Children Under Five,,Male,,Yes,Other,Biolgical Mother, ,29 Jan 16,4.125941136208077
+186,Non-Biological Children Under Five,,Male,,Yes,Maternal Aunt,Biolgical Mother, ,31 Jan 16,3.997262149212868
+187,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,.0520191649555099
+188,Children Not Mentioned,,Female,Yes,No,,Other Relative (Maternal), ,31 Jan 16,14.74058863791923
+188,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,31 Jan 16,11.66050650239562
+189,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,6.532511978097194
+190,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,29 Jan 16,16.0766598220397
+190,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,29 Jan 16,12.0766598220397
+190,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,29 Jan 16,1.075975359342916
+192,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,.5776865160848734
+192,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,14.8227241615332
+192,Children From Other Unions,2,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,9.982203969883642
+192,Non-Biological Children Under Five,,Male,,Yes,Other,Biolgical Mother, ,28 Jan 16,4.826830937713894
+192,Non-Biological Children Under Five,,Male,,Yes,Other,Biolgical Mother, ,28 Jan 16,4.826830937713894
+194,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,.6899383983572895
+198,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,01 Feb 16,27.58658453114305
+198,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,01 Feb 16,26.07529089664613
+198,Children From Other Unions,3,,,,Biological Mother,, ,01 Feb 16,23.4798083504449
+202,Children From Other Unions,1,Female,Yes,No,Biological Mother,Other Relative (Paternal), ,02 Feb 16,25.75770020533881
+202,Children From Other Unions,1,Male,Yes,No,Biological Mother,Non-Relative, ,02 Feb 16,22.59000684462697
+202,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,19.17043121149897
+202,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,13.08692676249144
+202,Children From Other Unions,1,Male,No,,Biological Mother,, ,02 Feb 16,22.75701574264203
+202,Children From Other Unions,1,Male,No,,Biological Mother,, ,02 Feb 16,16.6735112936345
+202,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,7.753593429158111
+203,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,18.74058863791923
+203,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,10.72689938398357
+205,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,1.541409993155373
+206,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,12.37234770704997
+208,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,02 Feb 16,25.75770020533881
+208,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,02 Feb 16,21.08692676249144
+208,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,02 Feb 16,19.06639288158796
+208,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,02 Feb 16,16.08761122518823
+208,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,02 Feb 16,10.75701574264203
+211,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,15.66050650239562
+211,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,12.10951403148528
+212,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,19.52908966461328
+212,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,9.516769336071183
+212,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,6.954140999315538
+212,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,24.99110198494182
+217,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,03 Feb 16,11.07734428473648
+218,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,8.361396303901437
+220,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,3.581108829568788
+221,Children With Biological Father,0,Male,No,,Biological Mother,, ,03 Feb 16,4.369609856262834
+224,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,6.496919917864476
+227,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,11.06913073237509
+227,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,5.878165639972622
+228,Children With Biological Father,0,Female,No,,Biological Mother,, ,02 Feb 16,13.7741273100616
+228,Children From Other Unions,1,Female,Yes,No,Biological Mother,Non-Relative, ,02 Feb 16,22.67214236824093
+230,Children From Other Unions,1,Male,Yes,No,Biological Mother,Other Relative (Maternal), ,03 Feb 16,3.381245722108145
+232,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,22.0807665982204
+232,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,20.08213552361396
+232,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,15.08008213552361
+232,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,116.0793976728268
+235,Children From Other Unions,1,Female,No,,Biological Mother,, ,04 Feb 16,10.94318959616701
+239,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,9.702943189596168
+239,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,5.612594113620808
+239,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,04 Feb 16,.3258042436687201
+240,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,15.09103353867214
+240,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,9.092402464065708
+240,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,7.091033538672143
+243,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,04 Feb 16,8.188911704312115
+244,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,17.22929500342231
+245,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,19.22518822724162
+245,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,17.16084873374401
+245,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,10.84462696783025
+245,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,8.577686516084873
+245,Children From Other Unions,1,Male,No,,Biological Mother,, ,02 Feb 16,5.152635181382615
+247,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,.1560574948665298
+247,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,31 Jan 16,8.544832306639288
+248,Children Not Mentioned,,Female,Yes,No,,Non-Relative, ,04 Feb 16,22.63655030800821
+248,Children Not Mentioned,,Male,Yes,No,,Don't Know, ,04 Feb 16,19.43600273785079
+248,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,04 Feb 16,16.80492813141684
+248,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,04 Feb 16,11.08008213552361
+248,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,04 Feb 16,1.437371663244353
+253,Children With Biological Father,0,Male,Yes,No,Biological Mother,Maternal Grandparent, ,05 Feb 16,15.95071868583162
+253,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,13.67556468172485
+253,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,12.84325804243669
+253,Children With Biological Father,0,,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,10.92128678986995
+253,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,8.673511293634498
+255,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,3.578370978781656
+258,Children From Other Unions,1,Female,Yes,No,Biological Mother,Other Relative (Maternal), ,05 Feb 16,10.87474332648871
+260,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,20.84325804243669
+260,Children From Other Unions,2,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,15.75906913073237
+260,Children From Other Unions,3,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,9.782340862422998
+261,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,14.03969883641342
+261,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,12.94729637234771
+263,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,5.664613278576318
+264,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,22.83641341546886
+264,Children From Other Unions,1,Female,Yes,No,Biological Mother,Non-Relative, ,06 Feb 16,20.82683093771389
+266,Children From Other Unions,1,Female,No,,Biological Mother,, ,05 Feb 16,.1232032854209446
+267,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,11.71252566735113
+267,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,.0657084188911704
+269,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,13.83436002737851
+271,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,19.09650924024641
+271,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,21.09787816563997
+271,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,22.05338809034908
+271,Children From Other Unions,1,Female,Yes,No,Biological Mother,Non-Relative, ,06 Feb 16,26.09719370294319
+271,Non-Biological Children Under Five,,Male,,Yes,Maternal Grandmother,Biolgical Mother, ,06 Feb 16,3.189596167008898
+272,Children From Other Unions,1,Female,Yes,No,Biological Mother,Other Relative (Paternal), ,03 Feb 16,12.31211498973306
+277,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,12.93634496919918
+277,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,9.516769336071183
+277,Children From Other Unions,3,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,5.415468856947296
+279,Children With Biological Father,0,Female,Yes,No,Biological Mother,Biolgical Mother, ,06 Feb 16,4.098562628336755
+279,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,10.09719370294319
+279,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,8.098562628336756
+279,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,5.935660506502396
+280,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,14.05886379192334
+280,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,12.09856262833676
+280,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,10.09719370294319
+280,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,1.264887063655031
+285,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,17.95482546201232
+285,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,14.26694045174538
+285,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,12.16700889801506
+289,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,10.25051334702259
+289,Children With Biological Father,0,Male,No,,Biological Mother,, ,07 Feb 16,1.711156741957563
+293,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,08 Feb 16,18.10266940451745
+293,Children From Other Unions,2,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,08 Feb 16,12.08761122518823
+294,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,08 Feb 16,12.98288843258042
+294,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,08 Feb 16,16.51745379876797
+294,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,08 Feb 16,14.7378507871321
+295,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,21.93018480492813
+295,Children With Biological Father,0,Female,Yes,No,Biological Mother,Other Relative (Maternal), ,05 Feb 16,20.75838466803559
+295,Children With Biological Father,0,Male,Yes,No,Biological Mother,Other Relative (Maternal), ,05 Feb 16,17.41820670773443
+295,Children With Biological Father,0,,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,14.83915126625599
+295,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,17.09514031485284
+295,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,11.00889801505818
+295,Children With Biological Father,0,Female,No,,Biological Mother,, ,05 Feb 16,9.585215605749486
+295,Children With Biological Father,0,Female,No,,Biological Mother,, ,05 Feb 16,8.676249144421629
+296,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,19.14031485284052
+296,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,15.24709103353867
+298,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,9.82340862422998
+299,Children From Other Unions,1,Male,Yes,No,Biological Mother,Non-Relative, ,07 Feb 16,10.81724845995893
+300,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,8.878850102669405
+300,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,7.411362080766598
+301,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,6.636550308008213
+304,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,7.331964407939767
+306,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,9.519507186858316
+306,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,7.676933607118412
+307,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,10.08624229979466
+308,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,.999315537303217
+309,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,9.768651608487337
+309,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,5.68104038329911
+309,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,14.42573579739904
+310,Children From Other Unions,1,Female,Yes,No,Biological Mother,Other Relative (Maternal), ,09 Feb 16,1.226557152635181
+310,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,6.431211498973306
+311,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,23.1047227926078
+311,Children From Other Unions,1,Female,Yes,No,Biological Mother,Non-Relative, ,09 Feb 16,28.10677618069815
+311,Non-Biological Children Under Five,,Male,,Yes,Maternal Grandmother,Biolgical Mother, ,09 Feb 16,5.106091718001369
+311,Non-Biological Children Under Five,,Male,,Yes,Maternal Grandmother,Biolgical Mother, ,09 Feb 16,2.105407255304586
+312,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,13.21013004791239
+312,Children From Other Unions,2,Male,No,,Biological Mother,, ,09 Feb 16,11.11019849418207
+312,Children From Other Unions,3,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,16.83504449007529
+312,Children From Other Unions,4,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,14.54072553045859
+313,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,9.796030116358658
+313,Children From Other Unions,1,Male,Yes,No,Biological Mother,Biological Father, ,09 Feb 16,9.724845995893224
+316,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,.971937029431896
+316,Children From Other Unions,2,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,17.18001368925394
+316,Children Not Mentioned,,Female,Yes,No,,Biolgical Mother, ,09 Feb 16,25.27310061601643
+322,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,8.572210814510608
+323,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,7.748117727583847
+325,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,13.35797399041752
+326,Children With Biological Father,0,Male,Yes,No,Biological Mother,Other Relative (Paternal), ,22 Jan 16,8.7419575633128
+326,Children From Other Unions,1,Male,Yes,No,Biological Mother,Biological Father, ,22 Jan 16,16.64339493497604
+326,Children From Other Unions,1,Female,Yes,No,Biological Mother,Biological Father, ,22 Jan 16,12.9719370294319
+327,Children From Other Unions,1,Male,No,,Biological Mother,, ,09 Feb 16,116.104038329911
+327,Children From Other Unions,2,Male,Yes,No,Biological Mother,Maternal Grandparent, ,09 Feb 16,3.104722792607803
+328,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,6.636550308008213
+329,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,12.60232717316906
+330,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,6.127310061601642
+332,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,11 Feb 16,21.67282683093772
+332,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,11 Feb 16,20.61601642710472
+332,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,11 Feb 16,17.51676933607119
+332,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,11 Feb 16,10.10540725530459
+333,Non-Biological Children Under Five,,Male,,Yes,Maternal Aunt,Biolgical Mother, ,10 Feb 16,4.095824777549623
+335,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,7.701574264202601
+336,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,17.51403148528405
+336,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,11.13210130047912
+336,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,8.487337440109513
+339,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,8.832306639288159
+341,Children From Other Unions,1,Female,Yes,No,Biological Mother,Other Relative (Maternal), ,11 Feb 16,29.68377823408624
+341,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,27.13757700205339
+341,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,23.13483915126626
+341,Children From Other Unions,1,Male,Yes,No,Biological Mother,Other Relative (Maternal), ,11 Feb 16,17.68377823408624
+341,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,19.24709103353867
+345,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,16.60506502395619
+345,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,6.740588637919234
+346,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,14.05065023956194
+346,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,9.670088980150581
+346,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,3.942505133470226
+347,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,17.1088295687885
+347,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,11.68240930869268
+349,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,13.61806981519507
+350,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,13.11430527036276
+350,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,9.114305270362765
+351,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,3.482546201232033
+351,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,15.15674195756331
+352,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,8.0766598220397
+353,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,8.892539356605065
+357,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,15.80561259411362
+357,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,13.8590006844627
+357,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,8.320328542094456
+357,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,8.320328542094456
+357,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,2.74880219028063
+359,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,19.05544147843943
+359,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,16.11772758384668
+362,Children With Biological Father,0,Male,Yes,No,Biological Mother,Non-Relative, ,13 Feb 16,19.81930184804928
+362,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,11.73716632443532
+362,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,5.568788501026694
+362,Children With Biological Father,0,Male,Yes,No,Biological Mother,Non-Relative, ,13 Feb 16,18.45037645448323
+365,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,13.58795345653662
+366,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,.6242299794661191
+366,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,20.50650239561944
+366,Children From Other Unions,2,Male,Yes,No,Biological Mother,Maternal Grandparent, ,11 Feb 16,20.78302532511978
+366,Children From Other Unions,2,Female,Yes,No,Biological Mother,Maternal Grandparent, ,11 Feb 16,15.51813826146475
+366,Non-Biological Children Under Five,,Male,,Yes,Maternal Aunt,Biolgical Mother, ,11 Feb 16,6.505133470225872
+368,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,14.83641341546886
+368,Children From Other Unions,2,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,8.917180013689254
+368,Children From Other Unions,2,Male,Yes,No,Biological Mother,Other Relative (Maternal), ,13 Feb 16,10.57084188911704
+368,Children From Other Unions,2,Female,No,,Biological Mother,, ,13 Feb 16,3.832991101984942
+368,Children From Other Unions,2,Male,No,,Biological Mother,, ,13 Feb 16,6.658453114305271
+368,Children From Other Unions,2,Male,No,,Biological Mother,, ,13 Feb 16,10.57084188911704
+370,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,14 Feb 16,.7802874743326489
+371,Children With Biological Father,0,,,,Biological Mother,, ,14 Feb 16,7.67419575633128
+372,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,19.01437371663244
+372,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,17.34428473648186
+373,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,12.34496919917864
+373,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,10.20123203285421
+373,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,7.67419575633128
+374,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,9.932922655715263
+376,Children From Other Unions,1,Male,Yes,No,Biological Mother,Biological Father, ,15 Feb 16,17.79876796714579
+377,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,9.489390828199863
+377,Children From Other Unions,1,Male,Yes,No,Biological Mother,Other Relative (Maternal), ,15 Feb 16,12.58316221765914
+378,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,4.982888432580425
+378,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,.4243668720054757
+379,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,9.122518822724162
+380,Children With Biological Father,0,Male,Yes,No,Biological Mother,Other Relative (Maternal), ,15 Feb 16,7.931553730321697
+381,Children With Biological Father,0,Male,No,,Biological Mother,, ,29 Jan 16,2.414784394250513
+381,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,8.0766598220397
+381,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,29 Jan 16,22.32717316906228
+381,Children Not Mentioned,,Female,No,,,, ,29 Jan 16,22.32717316906228
+381,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,29 Jan 16,15.51266255989049
+381,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,29 Jan 16,13.4757015742642
+382,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,6.121834360027378
+383,Children Not Mentioned,,Male,Yes,Yes,,Biolgical Mother, ,15 Feb 16,3.693360711841205
+384,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,2.173853524982889
+384,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,.2628336755646817
+385,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,13.26762491444216
+385,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,13.1170431211499
+386,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,10.20396988364134
+386,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,1.724845995893224
+387,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,13.11978097193703
+387,Children From Other Unions,2,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,9.119780971937029
+388,Children With Biological Father,0,Female,Yes,No,Biological Mother,Maternal Grandparent, ,14 Feb 16,15.43326488706366
+388,Children With Biological Father,0,Female,Yes,No,Biological Mother,Maternal Grandparent, ,14 Feb 16,13.11978097193703
+389,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,16.8870636550308
+390,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,16 Feb 16,12.49281314168378
+391,Children From Other Unions,1,Male,Yes,No,Biological Mother,Paternal Grandparent, ,17 Feb 16,5.596167008898015
+394,Children From Other Unions,1,Female,Yes,No,Biological Mother,Non-Relative, ,17 Feb 16,28.06297056810404
+394,Children From Other Unions,1,Male,No,,Biological Mother,, ,17 Feb 16,25.67556468172485
+395,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,1.240246406570842
+396,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,16.49281314168378
+396,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,23.12662559890486
+396,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,7.12662559890486
+396,Children From Other Unions,1,Female,Yes,No,Biological Mother,Non-Relative, ,17 Feb 16,22.12731006160164
+396,Children From Other Unions,1,Female,Yes,No,Biological Mother,Non-Relative, ,17 Feb 16,19.12662559890486
+396,Children From Other Unions,1,Female,Yes,No,Biological Mother,Non-Relative, ,17 Feb 16,12.12867898699521
+396,Children From Other Unions,1,Female,Yes,No,Biological Mother,Non-Relative, ,17 Feb 16,14.12731006160164
+396,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,8.128678986995208
+398,Children From Other Unions,1,Male,Yes,No,Biological Mother,Maternal Grandparent, ,17 Feb 16,11.13210130047912
+398,Children From Other Unions,1,Male,Yes,No,Biological Mother,Maternal Grandparent, ,17 Feb 16,7.709787816563997
+399,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Feb 16,17.96577686516085
+399,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Feb 16,12.70910335386721
+399,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Feb 16,11.62217659137577
+399,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Feb 16,7.452429842573579
+401,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,4.292950034223135
+401,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,13.9356605065024
+401,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,8.991101984941821
+401,Children From Other Unions,2,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,.5941136208076659
+403,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,13.29226557152635
+404,Children From Other Unions,1,,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,19.01711156741958
+404,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,14.97056810403833
+405,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,7.044490075290897
+406,Children From Other Unions,1,Female,Yes,No,Biological Mother,Maternal Grandparent, ,18 Jan 16,24.53114305270363
+406,Children From Other Unions,2,Female,Yes,No,Biological Mother,Maternal Grandparent, ,18 Jan 16,22.4394250513347
+406,Children From Other Unions,3,Female,Yes,No,Biological Mother,Maternal Grandparent, ,18 Jan 16,17.13073237508556
+406,Children From Other Unions,4,Male,Yes,No,Biological Mother,Maternal Grandparent, ,18 Jan 16,13.70841889117043
+406,Children From Other Unions,5,Male,Yes,No,Biological Mother,Maternal Grandparent, ,18 Jan 16,10.79808350444901
+407,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,17.37987679671458
+407,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,16.13141683778234
+407,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,9.631759069130732
+408,Children From Other Unions,1,Female,Yes,No,Biological Mother,Other Relative (Maternal), ,18 Jan 16,13.01300479123888
+408,Children From Other Unions,1,Female,Yes,No,Biological Mother,Maternal Grandparent, ,18 Jan 16,6.187542778918549
+409,Children With Biological Father,0,Male,Yes,No,Biological Mother,Maternal Grandparent, ,18 Jan 16,7.315537303216975
+410,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,11.61122518822724
+414,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,.3750855578370979
+414,Non-Biological Children Under Five,,Female,,Yes,Other,Biolgical Mother, ,19 Jan 16,2.80082135523614
+415,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,5.232032854209446
+415,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,14.04791238877481
+416,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,17.04859685147159
+416,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,14.04791238877481
+416,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,11.04722792607803
+416,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,7.885010266940451
+416,Children With Biological Father,0,Male,No,,Biological Mother,, ,19 Jan 16,16.04928131416838
+418,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,16.52292950034223
+418,Children From Other Unions,1,Male,Yes,No,Biological Mother,Other Relative (Maternal), ,18 Jan 16,15.5482546201232
+418,Children From Other Unions,2,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,8.651608487337439
+419,Children From Other Unions,1,Female,Yes,No,Biological Mother,Other Relative (Maternal), ,18 Jan 16,8.668035592060233
+420,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,.0438056125941136
+421,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,13.68651608487338
+421,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,9.103353867214237
+422,Children From Other Unions,1,Male,Yes,No,Biological Mother,Other Relative (Maternal), ,19 Jan 16,12.04928131416838
+422,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,5.620807665982204
+423,Children With Biological Father,0,Female,No,,Biological Mother,, ,18 Jan 16,4.213552361396304
+423,Children With Biological Father,0,Male,No,,Biological Mother,, ,18 Jan 16,4.213552361396304
+426,Children Not Mentioned,,Female,Yes,Yes,,Biolgical Mother, ,19 Jan 16,8.28747433264887
+427,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,16.2984257357974
+427,Children From Other Unions,1,Male,Yes,No,Biological Mother,Maternal Grandparent, ,19 Jan 16,12.72005475701574
+428,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,6.609171800136893
+428,Children With Biological Father,0,Male,No,,Biological Mother,, ,19 Jan 16,8.621492128678987
+429,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,10.507871321013
+429,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,9.336071184120465
+429,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,3.356605065023956
+430,Children From Other Unions,1,Male,No,,Biological Mother,, ,19 Jan 16,5.319644079397673
+431,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,16.53935660506502
+431,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,14.16563997262149
+431,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,11.709787816564
+432,Children From Other Unions,1,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,7.731690622861054
+433,Children From Other Unions,1,Male,No,,Biological Mother,, ,19 Jan 16,8.802190280629706
+435,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,.1834360027378508
+436,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,8.11772758384668
+436,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,5.596167008898015
+437,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,3.945242984257358
+437,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,9.043121149897331
+437,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,19.71800136892539
+437,Children From Other Unions,1,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,17.95482546201232
+437,Children From Other Unions,1,,,,Biological Mother,, ,19 Jan 16,11.43052703627652
+438,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,13.57700205338809
+438,Children With Biological Father,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,10.72689938398357
+438,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,8.194387405886379
+438,Children With Biological Father,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,.2135523613963039
+401,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,6.201232032854209
+97,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,1.481177275838467
+15,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,5.924709103353867
+74,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,4.673511293634497
+12,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,1.169062286105407
+328,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,3.789185489390828
+329,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,6.507871321013004
+424,Focal Child,0,Male,Yes,No,Biological Mother,, ,18 Jan 16,4.709103353867214
+76,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,4.561259411362081
+14,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,5.634496919917864
+75,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,5.379876796714579
+414,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,2.149212867898699
+121,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,25 Jan 16,1.905544147843943
+429,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,3.356605065023956
+71,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,3.665982203969884
+16,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,4.219028062970568
+412,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,1.609856262833676
+106,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,5.804243668720055
+413,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,2.496919917864477
+13,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,1.659137577002053
+129,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,2.655715263518138
+392,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,16 Feb 16,3.260780287474333
+376,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,2.083504449007529
+192,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,4.525667351129363
+5,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,4.826830937713894
+298,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,6.354551676933607
+228,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,6.140999315537303
+366,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,4.851471594798084
+300,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,5.538672142368241
+68,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,4.947296372347707
+41,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,.8733744010951403
+42,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,2.521560574948665
+43,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,4.068446269678303
+430,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,1.574264202600958
+73,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,4.692676249144422
+72,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,5.960301163586585
+296,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,5.798767967145791
+146,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,5.223819301848049
+402,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,2.691307323750856
+144,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,6.190280629705681
+17,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,5.894592744695414
+18,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,3.51813826146475
+89,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,1.875427789185489
+297,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,3.367556468172485
+145,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,6.064339493497604
+86,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,5.234770704996578
+243,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,5.404517453798768
+403,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,2.223134839151266
+164,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,4.42984257357974
+167,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,3.411362080766598
+210,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,6.338124572210814
+227,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,2.458590006844627
+130,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,2.505133470225873
+154,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,.8952772073921971
+394,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,6.997946611909651
+393,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,1.670088980150582
+244,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,2.986995208761122
+406,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,7.7782340862423
+242,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,3.203285420944558
+155,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,5.618069815195072
+389,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,5.957563312799453
+299,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,1.275838466803559
+387,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,5.66735112936345
+245,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,2.677618069815195
+301,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,3.167693360711841
+169,Focal Child,0,Female,Yes,No,Biological Mother,, ,30 Jan 16,5.995893223819301
+107,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,2.053388090349076
+108,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,4.92539356605065
+152,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,5.607118412046543
+147,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,3.145790554414785
+205,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,4.892539356605065
+165,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,1.648186173853525
+166,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,6.48870636550308
+168,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,5.579739904175223
+368,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,2.078028747433265
+395,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,4.268309377138946
+151,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,5.894592744695414
+272,Focal Child,0,Female,Yes,No,Biological Mother,, ,03 Feb 16,5.979466119096509
+204,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,4.947296372347707
+170,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,2.119096509240246
+157,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,3.07460643394935
+259,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,3.926078028747433
+246,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,1.637234770704997
+180,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,5.83709787816564
+156,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,3.613963039014374
+317,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,5.94113620807666
+194,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,6.184804928131417
+183,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,3.214236824093087
+233,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,1.363449691991786
+367,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,6.324435318275154
+396,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,4.676249144421629
+326,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,5.735797399041752
+327,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,1.048596851471595
+438,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,4.131416837782341
+139,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,3.603011635865845
+149,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,5.987679671457905
+305,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,5.253935660506502
+405,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,2.119096509240246
+209,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,2.036960985626283
+69,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,3.657768651608488
+70,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,5.316906228610541
+61,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,1.188227241615332
+161,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,5.960301163586585
+148,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,6.072553045859
+143,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,4.147843942505133
+53,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,3.923340177960301
+65,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,3.808350444900753
+372,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,3.288158795345653
+44,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,5.494866529774128
+22,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,1.11978097193703
+422,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,4.046543463381246
+66,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,5.579739904175223
+417,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,5.004791238877481
+381,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,4.681724845995893
+404,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,5.872689938398358
+140,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,3.449691991786448
+57,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,5.670088980150582
+162,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,4.213552361396304
+1,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,3.307323750855578
+2,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,3.315537303216975
+27,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,2.625598904859685
+28,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,1.878165639972621
+335,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,1.593429158110883
+383,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,6.611909650924025
+62,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,4.035592060232717
+231,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,6.464065708418891
+237,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,5.04312114989733
+141,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,1.566050650239562
+117,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,3.479808350444901
+45,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,5.486652977412731
+126,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,3.586584531143053
+63,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,3.112936344969199
+67,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,2.31895961670089
+90,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,3.433264887063655
+127,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,5.965776865160849
+116,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,6.417522245037645
+91,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,2.00684462696783
+125,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,1.152635181382615
+212,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,4.060232717316906
+11,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,2.236824093086927
+397,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,2.680355920602327
+373,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,5.442847364818618
+138,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,2.97056810403833
+142,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,6.231348391512663
+54,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,5.738535249828884
+354,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,4.290212183436003
+128,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,4.084873374401095
+193,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,4.966461327857632
+64,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,4.479123887748118
+114,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,3.206023271731691
+115,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,3.24435318275154
+3,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,5.503080082135524
+60,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,6.455852156057495
+362,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,3.838466803559206
+398,Focal Child,0,Female,Yes,No,Biological Mother,,Dandora,17 Feb 16,4.92539356605065
+428,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,2.376454483230664
+83,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,25 Jan 16,4.681724845995893
+203,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,4.561259411362081
+408,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,4.706365503080082
+409,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,2.327173169062286
+407,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,5.598904859685147
+365,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,4.16974674880219
+92,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,25 Jan 16,5.171800136892539
+359,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,3.646817248459959
+364,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,5.83709787816564
+275,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,1.043121149897331
+221,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,2.3709787816564
+46,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,2.324435318275154
+276,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,2.105407255304586
+309,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,1.070499657768652
+302,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,2.168377823408624
+427,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,3.690622861054072
+80,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,3.017111567419576
+31,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,2.636550308008214
+32,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,3.515400410677618
+82,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,2.518822724161533
+33,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,3.753593429158111
+29,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,4.799452429842574
+30,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,2.680355920602327
+4,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,2.3709787816564
+308,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,3.233401779603012
+286,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,4.736481861738535
+363,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,3.118412046543463
+415,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,3.378507871321013
+81,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,1.262149212867899
+55,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Jan 97,-16.68993839835729
+223,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,1.4072553045859
+333,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,3.342915811088296
+208,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,4.498288843258043
+425,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,4.082135523613963
+191,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,.7145790554414785
+187,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,1.190965092402464
+217,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,4.016427104722792
+346,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,6.042436687200547
+179,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,4.112251882272417
+247,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,6.579055441478439
+426,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,4.709103353867214
+150,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,3.734428473648186
+271,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,2.822724161533197
+270,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,3.189596167008898
+410,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,4.479123887748118
+284,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,4.087611225188227
+349,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,2.108145106091718
+50,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,2.157426420260096
+320,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,3.912388774811773
+282,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,2.855578370978782
+104,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,2.477754962354552
+222,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,1.943874058863792
+321,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,2.354551676933607
+202,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,5.366187542778919
+350,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,2.924024640657084
+319,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,3.293634496919918
+257,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,1.95482546201232
+400,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Feb 16,1.075975359342916
+51,Focal Child,0,Female,Yes,No,Biological Mother,, ,23 Jan 16,2.891170431211499
+79,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,5.52498288843258
+357,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,5.571526351813826
+188,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,5.642710472279261
+283,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,3.069130732375085
+269,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,3.359342915811088
+331,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,1.352498288843258
+332,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,5.330595482546201
+189,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,3.3347022587269
+334,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,1.486652977412731
+207,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,4.093086926762491
+220,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,6.54072553045859
+98,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,4.908966461327857
+251,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,2.064339493497604
+186,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,2.403832991101985
+277,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,1.716632443531827
+56,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,4.788501026694045
+253,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,4.010951403148528
+206,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,5.566050650239562
+304,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,5.702943189596167
+181,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,1.300479123887748
+292,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,1.557837097878166
+279,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,4.161533196440794
+174,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,.9691991786447639
+278,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,1.774127310061602
+303,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,1.007529089664613
+182,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,4.421629021218344
+173,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,5.924709103353867
+291,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,1.467488021902806
+353,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,5.440109514031485
+280,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,3.813826146475017
+258,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,6.425735797399041
+290,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,4.720054757015743
+289,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,4.369609856262834
+336,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,5.451060917180014
+293,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,08 Feb 16,4.65160848733744
+172,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,.4791238877481177
+352,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,4.605065023956194
+239,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,3.110198494182067
+294,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,08 Feb 16,6.598220396988364
+386,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,6.165639972621492
+385,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,6.513347022587269
+311,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,5.708418891170431
+313,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,5.010266940451745
+84,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,6.537987679671458
+103,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,4.985626283367557
+325,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,1.366187542778919
+234,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,2.91854893908282
+390,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,16 Feb 16,2.403832991101985
+312,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,6.327173169062286
+248,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,3.737166324435318
+241,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,5.117043121149897
+230,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,1.390828199863107
+171,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,1.382614647501711
+216,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,2.967830253251198
+96,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,5.075975359342916
+134,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,4.180698151950718
+337,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,2.685831622176591
+111,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,5.574264202600959
+345,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,4.021902806297057
+323,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,4.969199178644764
+379,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,5.639972621492129
+361,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,3.575633127994524
+109,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,2.190280629705681
+225,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,1.259411362080767
+185,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,2.943189596167009
+295,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,3.756331279945243
+380,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,5.429158110882957
+324,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,1.919233401779603
+314,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,3.657768651608488
+268,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,5.300479123887748
+322,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,5.754962354551677
+232,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,5.804243668720055
+318,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,6.053388090349076
+235,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,3.780971937029432
+411,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,1.297741273100616
+87,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,6.595482546201232
+88,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,5.232032854209446
+316,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,3.770020533880904
+338,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,2.464065708418891
+6,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,4.624229979466119
+214,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,3.682409308692676
+370,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,5.779603011635865
+215,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,5.8507871321013
+85,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,24 Jan 16,6.176591375770021
+112,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,6.327173169062286
+265,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,1.604380561259411
+211,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,31 Jan 16,5.894592744695414
+330,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,3.151266255989049
+135,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,2.354551676933607
+95,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,3.351129363449692
+190,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,2.861054072553046
+110,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,3.091033538672142
+274,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,1.1854893908282
+343,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,3.641341546885695
+105,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,5.377138945927447
+369,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,.7419575633127995
+255,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,2.729637234770705
+344,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,3.592060232717317
+94,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,3.485284052019165
+418,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,1.434633812457221
+287,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,4.739219712525667
+315,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,6.439425051334703
+218,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,5.930184804928132
+184,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,6.269678302532512
+340,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,1.95482546201232
+391,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,17 Feb 16,.9801505817932923
+199,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,01 Feb 16,2.365503080082136
+153,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,3.101984941820671
+133,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,6.225872689938399
+341,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,5.338809034907597
+342,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,11 Feb 16,1.292265571526352
+388,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,7.529089664613279
+347,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,2.193018480492813
+250,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,4.386036960985626
+23,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,1.514031485284052
+261,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,1.418206707734428
+382,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,4.123203285420945
+219,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,5.637234770704997
+101,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,6.086242299794661
+339,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,5.325119780971937
+263,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,3.644079397672827
+131,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,5.040383299110198
+348,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,10 Feb 16,4.824093086926762
+160,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,3.540041067761807
+374,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,4.136892539356605
+100,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,5.106091718001369
+102,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,2.8145106091718
+99,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,26 Jan 16,5.084188911704312
+178,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,6.138261464750171
+384,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,13 Feb 16,5.190965092402464
+256,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,5.026694045174538
+262,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,3.704312114989733
+306,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,3.498973305954825
+371,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,4.514715947980835
+377,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,6.127310061601642
+132,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,5.83709787816564
+175,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,2.729637234770705
+119,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,3.268993839835729
+113,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,3.394934976043805
+136,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,6.203969883641341
+266,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,05 Feb 16,5.817932922655715
+120,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,2.502395619438741
+434,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,4.785763175906913
+118,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,27 Jan 16,4.881587953456537
+420,Focal Child,0,Male,Yes,No,Biological Mother,, ,19 Jan 16,3.600273785078713
+416,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,3.79192334017796
+307,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,5.938398357289528
+432,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,4.944558521560575
+399,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Feb 16,6.028747433264887
+159,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,7.512662559890486
+200,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,01 Feb 16,5.171800136892539
+431,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,2.740588637919233
+378,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,15 Feb 16,3.071868583162217
+423,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,18 Jan 16,2.956878850102669
+198,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,01 Feb 16,2.595482546201232
+224,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,03 Feb 16,3.416837782340862
+419,Focal Child,0,Male,Yes,No,Biological Mother,, ,18 Jan 16,4.142368240930869
+249,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,1.919233401779603
+10,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,4.243668720054757
+356,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,2.88021902806297
+24,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,3.635865845311431
+176,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,3.159479808350445
+137,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,28 Jan 16,5.234770704996578
+177,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,2.598220396988364
+433,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,2.915811088295688
+8,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,5.070499657768652
+267,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,06 Feb 16,4.550308008213553
+26,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,3.542778918548939
+25,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,5.702943189596167
+264,Focal Child,0,Female,Yes,No,Biological Mother,, ,06 Feb 16,6.360027378507871
+358,Focal Child,0,Female,Yes,No,Biological Mother,, ,13 Feb 16,2.663928815879534
+285,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,07 Feb 16,4.199863107460644
+260,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,4.657084188911704
+240,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,04 Feb 16,4.093086926762491
+375,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,14 Feb 16,4.939082819986311
+436,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,3.594798083504449
+435,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,2.595482546201232
+39,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,5.919233401779603
+9,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,3.329226557152635
+213,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,02 Feb 16,3.51813826146475
+7,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,1.968514715947981
+21,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,20 Jan 16,7.025325119780972
+437,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,.9938398357289527
+20,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,21 Jan 16,.7419575633127995
+58,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,2.050650239561944
+36,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,5.585215605749487
+158,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,29 Jan 16,1.535934291581109
+35,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,3.425051334702259
+351,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,12 Feb 16,5.557837097878165
+163,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,30 Jan 16,2.001368925393566
+59,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,23 Jan 16,5.379876796714579
+37,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,2.603696098562629
+310,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,09 Feb 16,3.331964407939767
+421,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,19 Jan 16,5.08145106091718
+52,Focal Child,0,Female,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,3.45242984257358
+40,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,4.180698151950718
+38,Focal Child,0,Male,Yes,Yes,Biological Mother,Biolgical Mother, ,22 Jan 16,2.595482546201232

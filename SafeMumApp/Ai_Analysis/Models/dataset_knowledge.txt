@@ -1,0 +1,50 @@
+SAFEMUM AI — DATASET KNOWLEDGE DOCUMENT
+============================================================
+
+
+SUMMARY
+----------------------------------------
+The datasets provide insights into maternal health in Garissa, Kenya, revealing a high correlation between vaccination dates and outcomes, and a strong association between previous pregnancy losses and current pregnancy complications. The data also highlights the importance of community health volunteers in providing healthcare services to women and their families. Overall, the datasets suggest that maternal health outcomes in this region are influenced by a range of factors, including age, access to healthcare, and socioeconomic status.
+
+POPULATION
+----------------------------------------
+The women in these datasets are primarily from Garissa, Kenya, and are likely to be from rural or semi-urban areas, with an average age of around 28 years and limited access to education and healthcare.
+
+RISK FACTORS
+----------------------------------------
+  • Younger age
+  • Lack of kinship support
+  • Limited access to healthcare services
+  • Lower education levels
+  • Missing data
+  • Limited access to crisis support
+  • Poor performance indicators among community health volunteers
+  • Low socioeconomic status
+  • High parity
+  • Low knowledge of family planning methods among health providers
+
+CARE PATTERNS
+----------------------------------------
+Women in this region tend to seek care at facilities with higher socioeconomic profiles, and those who deliver in these facilities tend to have better antenatal visit adherence. Urban women are more likely to have access to health facilities with post-abortion care services compared to rural women.
+
+CHW INSIGHTS
+----------------------------------------
+The data reveals that community health volunteers who make more household visits and referrals tend to have higher performance indicators, suggesting that these volunteers play a critical role in providing healthcare services to women and their families.
+
+CULTURAL NOTES
+----------------------------------------
+The cultural intervention may have had an impact on behavior change indicators, and the datasets suggest that cultural and social factors, such as kinship support and access to crisis support, may influence maternal health outcomes.
+
+CLUSTER MEANINGS
+----------------------------------------
+The natural groupings in the data represent distinct subgroups of women with varying characteristics, such as differences in delivery location and socioeconomic status. For example, one cluster includes women who experienced severe complications requiring hospitalization.
+
+APP GUIDANCE
+----------------------------------------
+A maternal health AI app should use these insights to provide personalized support and guidance to women, taking into account their individual risk factors and care patterns. The app should also provide resources and referrals to community health volunteers and healthcare facilities, and incorporate cultural and social factors into its decision-making algorithms.
+
+KEY STATISTICS
+----------------------------------------
+  total_patients: 3215
+  total_facilities: 328
+  total_chws: 127
