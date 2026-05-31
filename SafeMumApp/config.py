@@ -13,9 +13,9 @@ class Config:
     # JWT stored in httpOnly cookies
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
     JWT_TOKEN_LOCATION = ["cookies"]
-    JWT_COOKIE_SECURE = False        # set True in production (HTTPS)
+    JWT_COOKIE_SECURE = True        # set True in production (HTTPS)
     JWT_COOKIE_HTTPONLY = True       # JS cannot read the token
-    JWT_COOKIE_SAMESITE = "Lax"
+    JWT_COOKIE_SAMESITE = "None"
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=12)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
     JWT_COOKIE_CSRF_PROTECT = False  # set True in production
