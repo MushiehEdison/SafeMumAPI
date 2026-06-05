@@ -101,6 +101,24 @@ def _serialize_case(c: CHWCase, full=False) -> dict:
         or "This patient was assigned based on risk level and proximity to your coverage area."
     )
 
+    # ── NEW: Patient coordinates ──────────────────────────────────────────
+    base["patientLatitude"] = patient.latitude if patient else None
+    base["patientLongitude"] = patient.longitude if patient else None
+
+    # ── NEW: Medical history summary ──────────────────────────────────────
+    if profile:
+        base["medicalHistory"] = {
+            "age":                profile.age,
+            "bloodType":          profile.blood_type,
+            "allergies":          profile.allergies,
+            "chronicConditions":  profile.chronic_conditions,
+            "medications":        profile.medications,
+            "medicalHistory":     profile.medical_history,
+            "genotype":           profile.genotype,
+        }
+    else:
+        base["medicalHistory"] = None
+
     checkins = []
     if patient:
         raw = (
@@ -116,10 +134,12 @@ def _serialize_case(c: CHWCase, full=False) -> dict:
         }
         for ci in raw:
             checkins.append({
-                "date":  _fmt_datetime(ci.created_at),
-                "mood":  ci.mood,
-                "note":  ci.note,
-                "color": mood_color.get((ci.mood or "").lower(), "gray"),
+                "date":           _fmt_datetime(ci.created_at),
+                "mood":           ci.mood,
+                "note":           ci.note,
+                "color":          mood_color.get((ci.mood or "").lower(), "gray"),
+                "chwNote":        ci.chw_note,                              # NEW
+                "chwRespondedAt": ci.chw_responded_at.isoformat() if ci.chw_responded_at else None,  # NEW
             })
     base["checkinHistory"] = checkins
 
@@ -219,3 +239,42 @@ def update_case(case_id):
         return jsonify({"error": f"Could not update case: {str(e)}"}), 500
 
     return jsonify({"message": "Case updated", "data": _serialize_case(c, full=True)}), 200
+
+
+@bp.route('/cases/<int:case_id>/respond-to-checkin', methods=['POST'])
+@jwt_required()
+def respond_to_checkin(case_id):
+    """CHW writes a personal note on a patient's most recent flagged check-in"""
+    chw_id = int(get_jwt_identity())
+    c = CHWCase.query.filter_by(id=case_id, chw_id=chw_id).first()
+    if not c:
+        return jsonify({"error": "Case not found"}), 404
+
+    data = request.get_json(silent=True) or {}
+    note = (data.get('note') or '').strip()
+    if not note:
+        return jsonify({"error": "note is required"}), 400
+
+    # Find the patient's most recent check-in
+    latest_checkin = (
+        CheckIn.query
+        .filter_by(user_id=c.patient_id)
+        .order_by(CheckIn.created_at.desc())
+        .first()
+    )
+
+    if not latest_checkin:
+        return jsonify({"error": "No check-in found for this patient"}), 404
+
+    latest_checkin.chw_note = note
+    latest_checkin.chw_responded_at = datetime.utcnow()
+    db.session.commit()
+
+    return jsonify({
+        "message": "Response saved",
+        "data": {
+            "checkin_id": latest_checkin.id,
+            "chw_note": note,
+            "responded_at": _fmt_datetime(datetime.utcnow()),
+        }
+    }), 200

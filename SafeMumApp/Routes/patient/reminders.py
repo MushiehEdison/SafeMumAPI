@@ -4,17 +4,9 @@ from datetime import datetime
 from SafeMumApp import db
 from SafeMumApp.models import User
 from SafeMumApp.utils.decorators import patient_required, get_current_user_id
+from SafeMumApp.Ai_Analysis.classifier import predict_repeat_risk, detect_isolation, get_vulnerability_category
 
 bp = Blueprint('reminders', __name__)
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# REMINDER MODEL (stored in User's profile as JSON for now)
-# We use a dedicated Reminder table pattern below.
-# ─────────────────────────────────────────────────────────────────────────────
-# Import the Reminder model — add this to models.py if not present yet.
-# The model is defined at the bottom of this file as a reference.
-# ─────────────────────────────────────────────────────────────────────────────
 
 from SafeMumApp.models import Reminder   # noqa — add Reminder to models.py
 
@@ -105,8 +97,64 @@ def create_reminder():
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# GET /api/reminders/suggestion
+# Returns AI-powered reminder suggestion based on patient's risk profile.
+# ─────────────────────────────────────────────────────────────────────────────
+
+@bp.route('/suggestion', methods=['GET'])
+@patient_required
+def get_reminder_suggestion():
+    user_id = get_current_user_id()
+    
+    try:
+        # Get patient profile from database
+        user = User.query.get(user_id)
+        if not user:
+            return jsonify({"suggestion": None}), 200
+        
+        # Extract patient features for classifier
+        patient_features = {
+            'age': user.age,
+            'education': user.education,
+            'urban_rural': user.urban_rural,
+            'prev_pregnancies': user.prev_pregnancies,
+            'prev_abortions': user.prev_abortions,
+            'county': user.county,
+            'religion': user.religion,
+            'previous_losses': user.previous_losses
+        }
+        
+        # Get risk prediction
+        result = predict_repeat_risk(patient_features)
+        
+        # Check if high risk (probability > 0.6)
+        if result and result.get('probability', 0) > 0.6:
+            return jsonify({
+                "suggestion": {
+                    "message": "Based on your history, I recommend scheduling a follow-up appointment within the next 2 weeks. Women with your history benefit from early check-ins.",
+                    "reminderData": {
+                        "type": "Follow-up Appointment",
+                        "datetime": "",
+                        "aiMessage": "This follow-up is especially important given your pregnancy history. Please do not skip it.",
+                        "missedCount": 0,
+                        "completed": False,
+                        "overdue": False
+                    }
+                }
+            }), 200
+        else:
+            return jsonify({"suggestion": None}), 200
+            
+    except Exception as e:
+        # Silently fail - never crash the page
+        print(f"Error in reminder suggestion: {e}")
+        return jsonify({"suggestion": None}), 200
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # PATCH /api/reminders/<id>
 # Partial update — used for snooze (datetime, overdue) and edits.
+# Also checks for missed reminders and creates CHW alerts if needed.
 # ─────────────────────────────────────────────────────────────────────────────
 
 @bp.route('/<int:reminder_id>', methods=['PATCH'])
@@ -133,6 +181,49 @@ def update_reminder(reminder_id):
             setattr(reminder, snake, body[camel])
 
     db.session.commit()
+    
+    # Check if user has missed this reminder 2+ times
+    missed_count = body.get("missedCount", reminder.missed_count)
+    if missed_count >= 2:
+        try:
+            # Call classifier predictions
+            is_high_risk = classifier.predict_isolation(user_id)
+            is_vulnerable = classifier.predict_vulnerability(user_id)
+            
+            # If either returns high risk/isolated, create CHW alert
+            if is_high_risk or is_vulnerable:
+                # Import CHWAlert model if it exists, otherwise log to a table
+                try:
+                    from SafeMumApp.models import CHWAlert
+                    alert = CHWAlert(
+                        user_id=user_id,
+                        reminder_id=reminder_id,
+                        reason="missed_reminder_x2",
+                        timestamp=datetime.utcnow()
+                    )
+                    db.session.add(alert)
+                    db.session.commit()
+                except ImportError:
+                    # Fallback: log to a CHWNotification table or just print
+                    # Create CHWNotification if model exists
+                    try:
+                        from SafeMumApp.models import CHWNotification
+                        notification = CHWNotification(
+                            user_id=user_id,
+                            reminder_id=reminder_id,
+                            alert_type="missed_reminder_x2",
+                            created_at=datetime.utcnow()
+                        )
+                        db.session.add(notification)
+                        db.session.commit()
+                    except ImportError:
+                        # If no alert model exists, just log to console
+                        print(f"CHW Alert needed: User {user_id} missed reminder {reminder_id} 2+ times, risk detected")
+        except Exception as e:
+            # Fire and forget - never block the response
+            print(f"Error creating CHW alert: {e}")
+            db.session.rollback()
+    
     return jsonify({"message": "Updated", "data": _serialise(reminder)}), 200
 
 
@@ -153,6 +244,46 @@ def complete_reminder(reminder_id):
     reminder.overdue      = False
     reminder.completed_at = datetime.utcnow()
     db.session.commit()
+    
+    if reminder.missed_count >= 2:
+        try:
+            # Call classifier predictions
+            is_high_risk = classifier.predict_isolation(user_id)
+            is_vulnerable = classifier.predict_vulnerability(user_id)
+            isolation_result = detect_isolation(profile_dict)
+            vuln_category    = get_vulnerability_category(crisis_score, wealth_score)
+            # If either returns high risk/isolated, create CHW alert
+            if is_high_risk or is_vulnerable:
+                # Import CHWAlert model if it exists, otherwise log to a table
+                try:
+                    from SafeMumApp.models import CHWAlert
+                    alert = CHWAlert(
+                        user_id=user_id,
+                        reminder_id=reminder_id,
+                        reason="missed_reminder_x2",
+                        timestamp=datetime.utcnow()
+                    )
+                    db.session.add(alert)
+                    db.session.commit()
+                except ImportError:
+                    # Fallback: log to a CHWNotification table if it exists
+                    try:
+                        from SafeMumApp.models import CHWNotification
+                        notification = CHWNotification(
+                            user_id=user_id,
+                            reminder_id=reminder_id,
+                            alert_type="missed_reminder_x2",
+                            created_at=datetime.utcnow()
+                        )
+                        db.session.add(notification)
+                        db.session.commit()
+                    except ImportError:
+                        # If no alert model exists, just log to console
+                        print(f"CHW Alert needed: User {user_id} missed reminder {reminder_id} 2+ times, risk detected")
+        except Exception as e:
+            # Fire and forget - never block the response
+            print(f"Error creating CHW alert: {e}")
+            db.session.rollback()
 
     return jsonify({"message": "Completed", "data": _serialise(reminder)}), 200
 

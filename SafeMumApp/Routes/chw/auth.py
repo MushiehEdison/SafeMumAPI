@@ -25,6 +25,18 @@ def _normalize_speciality(raw: str) -> str:
         "Community Health Volunteer": "volunteer",
     }.get(raw, "volunteer")
 
+def _normalize_qualification(raw: str) -> str:
+    """Map frontend display labels → model values."""
+    if not raw:
+        return None
+    return {
+        "Certificate":       "certificate",
+        "Diploma":           "diploma",
+        "Bachelor's Degree": "bachelors",
+        "Master's Degree":   "masters",
+        "PhD":               "phd",
+    }.get(raw, None)
+
 def _parse_radius(raw: str) -> float:
     """Convert '5km' → 5.0"""
     try:
@@ -39,6 +51,8 @@ def _serialize(chw: CommunityHealthWorker) -> dict:
         "email":              chw.email,
         "phone":              chw.phone,
         "speciality":         chw.speciality,
+        "qualification":      chw.qualification,
+        "years_experience":   chw.years_experience,
         "institution":        chw.institution,
         "coverage_area":      chw.coverage_area,
         "latitude":           chw.latitude,
@@ -57,18 +71,20 @@ def register():
     Register a new community health worker.
 
     Body JSON:
-        name           str   required
-        email          str   required
-        countryCode    str   required  e.g. "+237"
-        phone          str   optional  digits only
-        password       str   required  min 8 chars
-        confirmPassword str  required  must match password
-        speciality     str   optional  "Nurse"|"Midwife"|"Volunteer Counsellor"|"Community Health Volunteer"
-        institution    str   optional
-        locationName   str   optional  human-readable address from Nominatim
-        latitude       float optional
-        longitude      float optional
-        radius         str   optional  "2km"|"5km"|"10km"|"15km"|"20km"
+        name            str   required
+        email           str   required
+        countryCode     str   required  e.g. "+237"
+        phone           str   optional  digits only
+        password        str   required  min 8 chars
+        confirmPassword str   required  must match password
+        speciality      str   optional  "Nurse"|"Midwife"|"Volunteer Counsellor"|"Community Health Volunteer"
+        qualification   str   optional  "Certificate"|"Diploma"|"Bachelor's Degree"|"Master's Degree"|"PhD"
+        yearsExperience str   optional  "Less than 1 year"|"1-3 years"|"4-7 years"|"8-15 years"|"15+ years"
+        institution     str   optional
+        locationName    str   optional  human-readable address from Nominatim
+        latitude        float optional
+        longitude       float optional
+        radius          str   optional  "2km"|"5km"|"10km"|"15km"|"20km"
     """
     data = request.get_json(silent=True) or {}
 
@@ -81,12 +97,14 @@ def register():
     confirm_pwd  = data.get("confirmPassword") or ""
 
     # ── Optional fields ───────────────────────────────────────────────────────
-    speciality_raw = (data.get("speciality") or "Nurse").strip()
-    institution    = (data.get("institution") or "").strip() or None
-    location_name  = (data.get("locationName") or "").strip() or None
-    latitude       = data.get("latitude")
-    longitude      = data.get("longitude")
-    radius_raw     = (data.get("radius") or "5km").strip()
+    speciality_raw    = (data.get("speciality") or "Nurse").strip()
+    qualification_raw = (data.get("qualification") or "").strip()
+    years_experience  = (data.get("yearsExperience") or "").strip()
+    institution       = (data.get("institution") or "").strip() or None
+    location_name     = (data.get("locationName") or "").strip() or None
+    latitude          = data.get("latitude")
+    longitude         = data.get("longitude")
+    radius_raw        = (data.get("radius") or "5km").strip()
 
     # ── Validation ────────────────────────────────────────────────────────────
     if not name:
@@ -118,6 +136,8 @@ def register():
         phone               = full_phone or "",
         password_hash       = password_hash,
         speciality          = _normalize_speciality(speciality_raw),
+        qualification       = _normalize_qualification(qualification_raw) if qualification_raw else None,
+        years_experience    = years_experience if years_experience else None,
         institution         = institution,
         coverage_area       = location_name,
         latitude            = float(latitude) if latitude is not None else None,
@@ -194,17 +214,16 @@ def me():
     """
     chw_id = get_jwt_identity()
     chw = CommunityHealthWorker.query.get(int(chw_id))
- 
+
     if not chw:
         return jsonify({"error": "CHW not found"}), 404
- 
+
     return jsonify({
         "message": "ok",
         "data": _serialize(chw)
     }), 200
 
 
-    
 # ─────────────────────────────────────────────
 # POST /chw/auth/logout
 # ─────────────────────────────────────────────
@@ -213,4 +232,3 @@ def logout():
     response = jsonify({"message": "Logged out successfully", "data": {}})
     unset_jwt_cookies(response)
     return response, 200
-    

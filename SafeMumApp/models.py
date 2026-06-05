@@ -380,6 +380,8 @@ class CommunityHealthWorker(db.Model):
     is_available = db.Column(db.Boolean, default=True)
     registered_at = db.Column(db.DateTime, default=datetime.utcnow)
     is_verified = db.Column(db.Boolean, default=False, nullable=False) 
+    qualification = db.Column(db.String(50), nullable=True) 
+    years_experience = db.Column(db.String(30), nullable=True)
 
     # Relationships
     cases = db.relationship('CHWCase', back_populates='chw', lazy=True)
@@ -584,6 +586,8 @@ class CheckIn(db.Model):
     mood       = db.Column(db.String(120), nullable=False)
     note       = db.Column(db.Text, nullable=True)
     conclusion = db.Column(db.Text, nullable=True) 
+    chw_note         = db.Column(db.Text, nullable=True)                
+    chw_responded_at = db.Column(db.DateTime, nullable=True)   
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     user = db.relationship('User', backref=db.backref('check_ins', lazy=True))
@@ -603,7 +607,9 @@ class CommunityReply(db.Model):
     __tablename__ = 'community_replies'
     id         = db.Column(db.Integer, primary_key=True)
     post_id    = db.Column(db.Integer, db.ForeignKey('community_posts.id'), nullable=False)
-    content    = db.Column(db.Text, nullable=False)       # always anonymous
+    content    = db.Column(db.Text, nullable=False)   
+    is_chw     = db.Column(db.Boolean, default=False, nullable=False)  
+    chw_name   = db.Column(db.String(120), nullable=True)    
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     post = db.relationship('CommunityPost', back_populates='replies')
@@ -698,5 +704,33 @@ class AIMemory(db.Model):
         return f'<AIMemory user={self.user_id}>'
 
 
+class JournalEntry(db.Model):
+    __tablename__ = "journal_entries"
+ 
+    id         = db.Column(db.Integer, primary_key=True)
+    user_id    = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False, index=True)
+    content    = db.Column(db.Text, nullable=False)
+    mood_tag   = db.Column(db.String(32), nullable=True)   # e.g. "Hopeful", "Heavy"
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+ 
+    user = db.relationship("User", backref=db.backref("journal_entries", lazy="dynamic"))
+ 
+    def __repr__(self):
+        return f"<JournalEntry id={self.id} user={self.user_id} mood={self.mood_tag}>"
+
+class InsightReport(db.Model):
+    __tablename__ = 'insight_reports'
+    id         = db.Column(db.Integer, primary_key=True)
+    tag        = db.Column(db.String(50))      # "Geography", "Care Gaps", etc.
+    title      = db.Column(db.String(200))
+    body       = db.Column(db.Text)
+    generated_at = db.Column(db.DateTime, default=datetime.utcnow)
+    period     = db.Column(db.String(20))      # "2025-05" monthly key
 
 
+class DashboardSnapshot(db.Model):
+    __tablename__ = 'dashboard_snapshots'
+    id           = db.Column(db.Integer, primary_key=True)
+    snapshot_key = db.Column(db.String(100))   # e.g. "loss_geography_2025-05"
+    data         = db.Column(db.JSON)           # the actual chart data
+    computed_at  = db.Column(db.DateTime, default=datetime.utcnow)

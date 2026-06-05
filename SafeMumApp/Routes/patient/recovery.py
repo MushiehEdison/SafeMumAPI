@@ -6,7 +6,7 @@ from SafeMumApp import db
 from SafeMumApp.models import (
     User, MedicalProfile, CommunityHealthWorker,
     SupportRequest, CHWCase, AIMemory,
-    CheckIn, CommunityPost, CommunityReply
+    CheckIn, CommunityPost, CommunityReply, JournalEntry
 )
 from SafeMumApp.utils.decorators import patient_required, get_current_user_id
 from SafeMumApp.utils.chw_assignment import assign_chw
@@ -101,12 +101,14 @@ def _get_daily_tip(phase: str, user_id: int) -> str:
 
 def _serialise_checkin(c) -> dict:
     return {
-        "id":         c.id,
-        "date":       c.created_at.isoformat() if c.created_at else None,
-        "mood":       c.mood,
-        "note":       c.note,
-        "conclusion": c.conclusion,   
-        "color":      _mood_color(c.mood),
+        "id":               c.id,
+        "date":             c.created_at.isoformat() if c.created_at else None,
+        "mood":             c.mood,
+        "note":             c.note,
+        "conclusion":       c.conclusion,
+        "color":            _mood_color(c.mood),
+        "chw_note":         c.chw_note,                           # NEW
+        "chw_responded_at": c.chw_responded_at.isoformat() if c.chw_responded_at else None,  # NEW
     }
 
 
@@ -124,6 +126,8 @@ def _serialise_reply(r) -> dict:
         "id":      r.id,
         "content": r.content,
         "timeAgo": _time_ago(r.created_at),
+        "isChw":   r.is_chw or False,       # NEW
+        "chwName": r.chw_name if r.is_chw else None,  # NEW
     }
 
 
@@ -138,8 +142,9 @@ def _serialise_counsellor(chw: CommunityHealthWorker) -> dict:
     }
 def _generate_checkin_conclusion(mood, note, answers, memory,
                                   consecutive_low, isolation, vuln,
-                                  recovery_phase, daily_tip):
-    
+                                  recovery_phase, daily_tip,
+                                  mood_trend="unknown",
+                                  cultural_profile="mixed_transitional"):
     try:
         import json as _json
         dataset_context = get_risk_context_for_prompt()
@@ -152,9 +157,26 @@ def _generate_checkin_conclusion(mood, note, answers, memory,
 
         alert_ctx = ""
         if consecutive_low >= 3:
-            alert_ctx = "\nFLAG: 3+ consecutive low mood check-ins."
+            alert_ctx = "\nFLAG: 3+ consecutive low mood check-ins. Gently suggest counsellor."
         if isolation.get('is_isolated'):
-            alert_ctx += "\nFLAG: Social isolation detected."
+            alert_ctx += "\nFLAG: Social isolation detected. Remind her support is available."
+
+        # Tone based on cultural profile
+        tone_map = {
+            "rural_conservative": "Use warm, simple language. Reference family and community support.",
+            "mixed_transitional": "Balance warmth with practical information.",
+            "urban_educated":     "Be direct and evidence-based. She can handle clinical detail.",
+        }
+        tone_note = tone_map.get(cultural_profile, tone_map["mixed_transitional"])
+
+        # Guidance based on mood trend
+        trend_map = {
+            "declining": "Her mood has been getting worse. Be especially present and gentle today.",
+            "improving": "Her mood has been improving. Acknowledge her progress specifically.",
+            "stable":    "Her mood has been steady. Encourage her to keep going.",
+            "unknown":   "No trend data yet. Respond warmly to what she shared today.",
+        }
+        trend_note = trend_map.get(mood_trend, trend_map["unknown"])
 
         answers_text = ""
         if answers:
@@ -162,19 +184,24 @@ def _generate_checkin_conclusion(mood, note, answers, memory,
             for qid, val in answers.items():
                 answers_text += f"  {qid}: {val}\n"
 
-        prompt = f"""You are a compassionate AI health companion for a woman recovering from pregnancy loss in Sub-Saharan Africa.
+        prompt = f"""You are a maternal health companion — part therapist, part doctor, part educator — supporting a woman recovering from pregnancy loss.
 
 {dataset_context}
 
 Her mood today: "{mood}"
 Her note: "{note or 'No note provided'}"
 Recovery phase: {PHASE_LABELS.get(recovery_phase, recovery_phase)}
-Vulnerability level: {vuln}{memory_ctx}{alert_ctx}{answers_text}
+Vulnerability level: {vuln}
+Mood trend (last 10 check-ins): {mood_trend}
+{memory_ctx}{alert_ctx}{answers_text}
+
+Tone guidance: {tone_note}
+Trend guidance: {trend_note}
 
 Return ONLY a JSON object with exactly these two keys:
 {{
-  "response": "A warm 3-4 sentence conversational reply acknowledging her mood and note. If flagged, gently mention a counsellor. End with one gentle question or encouragement.",
-  "conclusion": "A 2-3 sentence clinical-style summary of her overall condition today based on ALL her answers — physical and emotional. Use plain language. State what is going well, what needs watching, and one clear recommendation. This is what she reads as her check-in summary."
+  "response": "3-4 sentences. Acknowledge her mood and note specifically — not generically. If trend is declining or flagged, gently mention a counsellor is available. End with one practical encouragement or question. Never start with 'I am sorry for your loss'. Never say 'I hear you' or 'I understand'. Sound like a real person who knows her.",
+  "conclusion": "2-3 sentences clinical summary based on ALL her answers today — physical and emotional. Plain language. What is going well, what needs watching, one clear recommendation."
 }}
 
 Return ONLY valid JSON. No markdown."""
@@ -195,23 +222,22 @@ Return ONLY valid JSON. No markdown."""
             result = _json.loads(match.group()) if match else {}
 
         return (
-            result.get("response", "Thank you for sharing. Take care of yourself today."),
-            result.get("conclusion", "Based on your check-in, you are being monitored. Keep checking in daily.")
+            result.get("response", "Thank you for showing up today."),
+            result.get("conclusion", "Based on your check-in, keep monitoring how you feel.")
         )
 
     except Exception as e:
         print(f"[SafeMum AI] Groq conclusion failed: {e}")
         fallbacks = {
             "red":   "Thank you for sharing. You do not have to carry this alone.",
-            "gray":  "Thank you for being here. Up and down days are part of this journey.",
-            "green": "It is good to hear you are doing a little better.",
+            "gray":  "Up and down days are part of this journey. I am glad you checked in.",
+            "green": "It is good to hear you are doing better. Keep going.",
         }
         color = _mood_color(mood)
         return (
             fallbacks.get(color, fallbacks["gray"]),
-            "Based on your responses today, keep monitoring how you feel and check in again tomorrow."
+            "Keep monitoring how you feel and check in again tomorrow."
         )
-
 # ─────────────────────────────────────────────────────────────────────────────
 # CHECK-IN
 # ─────────────────────────────────────────────────────────────────────────────
@@ -508,13 +534,47 @@ def get_recovery_progress():
 @bp.route('/community', methods=['GET'])
 @patient_required
 def get_community_posts():
-    posts = (
+    user_id = get_current_user_id()
+
+    # Get current user's vulnerability
+    memory = AIMemory.query.filter_by(user_id=user_id).first()
+    user_vuln = memory.vulnerability_level if memory else "medium"
+
+    all_posts = (
         CommunityPost.query
         .order_by(CommunityPost.created_at.desc())
-        .limit(50)
+        .limit(100)
         .all()
     )
-    return jsonify({"message": "ok", "data": [_serialise_post(p) for p in posts]}), 200
+
+    # Score each post by how relevant it is to this user
+    def _post_score(post):
+        author_memory = AIMemory.query.filter_by(
+            user_id=post.author_id
+        ).first() if hasattr(post, 'author_id') and post.author_id else None
+
+        author_vuln = author_memory.vulnerability_level if author_memory else "medium"
+
+        # High vulnerability users see high vulnerability posts first
+        vuln_match = {
+            ("high",   "high"):   0,
+            ("high",   "medium"): 1,
+            ("high",   "low"):    2,
+            ("medium", "medium"): 0,
+            ("medium", "high"):   1,
+            ("medium", "low"):    1,
+            ("low",    "low"):    0,
+            ("low",    "medium"): 1,
+            ("low",    "high"):   2,
+        }
+        return vuln_match.get((user_vuln, author_vuln), 1)
+
+    sorted_posts = sorted(all_posts, key=_post_score)
+
+    return jsonify({
+        "message": "ok",
+        "data": [_serialise_post(p) for p in sorted_posts[:50]],
+    }), 200
 
 
 @bp.route('/community', methods=['POST'])
@@ -553,19 +613,40 @@ def reply_to_post(post_id):
 @bp.route('/counsellors', methods=['GET'])
 @patient_required
 def get_counsellors():
+    user_id = get_current_user_id()
+
+    # Get user vulnerability
+    memory = AIMemory.query.filter_by(user_id=user_id).first()
+    user_vuln = memory.vulnerability_level if memory else "medium"
+
     counsellors = (
         CommunityHealthWorker.query
         .filter_by(is_verified=True)
-        .filter(CommunityHealthWorker.speciality.in_(['counsellor', 'nurse', 'midwife']))
-        .order_by(
-            CommunityHealthWorker.is_available.desc(),
-            CommunityHealthWorker.full_name,
-        )
+        .filter(CommunityHealthWorker.speciality.in_(
+            ['counsellor', 'nurse', 'midwife']
+        ))
         .all()
     )
-    return jsonify({"message": "ok", "data": [_serialise_counsellor(c) for c in counsellors]}), 200
 
+    serialised = [_serialise_counsellor(c) for c in counsellors]
 
+    # High vulnerability → available counsellors first, then others
+    # Low vulnerability → any ordering is fine
+    if user_vuln == "high":
+        serialised.sort(key=lambda c: (
+            0 if c["available"] and c["speciality"].lower() == "counsellor" else
+            1 if c["available"] else
+            2
+        ))
+    else:
+        serialised.sort(key=lambda c: (0 if c["available"] else 1))
+
+    return jsonify({
+        "message":     "ok",
+        "data":        serialised,
+        "user_vuln":   user_vuln,
+        "show_urgent": user_vuln == "high",
+    }), 200
 # ─────────────────────────────────────────────────────────────────────────────
 # NGO SUPPORT REQUEST
 # ─────────────────────────────────────────────────────────────────────────────
@@ -908,3 +989,124 @@ Return ONLY valid JSON."""
                 "daily_tip":      _get_daily_tip(recovery_phase, int(user_id)),
             }
         }), 200
+
+
+def _serialise_entry(e) -> dict:
+    return {
+        "id":         e.id,
+        "content":    e.content,
+        "mood_tag":   e.mood_tag,
+        "created_at": e.created_at.isoformat() if e.created_at else None,
+    }
+
+
+@bp.route('/journal/entries', methods=['GET'])
+@patient_required
+def get_journal_entries():
+    user_id = get_current_user_id()
+    entries = (
+        JournalEntry.query
+        .filter_by(user_id=user_id)
+        .order_by(JournalEntry.created_at.desc())
+        .limit(100)
+        .all()
+    )
+    return jsonify({
+        "message": "ok",
+        "data": [_serialise_entry(e) for e in entries],
+    }), 200
+
+
+@bp.route('/journal/entry', methods=['POST'])
+@patient_required
+def create_journal_entry():
+    user_id = get_current_user_id()
+    body    = request.get_json(silent=True) or {}
+
+    content  = (body.get('content') or '').strip()
+    mood_tag = (body.get('moodTag') or '').strip() or None
+
+    if not content:
+        return jsonify({"error": "content is required"}), 400
+
+    VALID_MOODS = {"Hopeful", "Heavy", "Grateful", "Angry", "Peaceful", "Confused", "Tired", "Okay"}
+    if mood_tag and mood_tag not in VALID_MOODS:
+        mood_tag = None
+
+    entry = JournalEntry(user_id=user_id, content=content, mood_tag=mood_tag)
+    db.session.add(entry)
+    db.session.commit()
+
+    return jsonify({
+        "message": "Entry saved",
+        "data":    _serialise_entry(entry),
+    }), 201
+
+
+@bp.route('/journal/entry/<int:entry_id>', methods=['DELETE'])
+@patient_required
+def delete_journal_entry(entry_id):
+    user_id = get_current_user_id()
+    entry   = JournalEntry.query.filter_by(id=entry_id, user_id=user_id).first()
+
+    if not entry:
+        return jsonify({"error": "Entry not found"}), 404
+
+    db.session.delete(entry)
+    db.session.commit()
+    return jsonify({"message": "Entry deleted"}), 200
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HEALIA — Journal reflection
+# This is a separate blueprint endpoint you can add to a healia.py blueprint
+# or drop directly into recovery.py if you prefer one file
+# ─────────────────────────────────────────────────────────────────────────────
+
+@bp.route('/healia/journal-reflection', methods=['POST'])
+@patient_required
+def healia_journal_reflection():
+    user_id = get_current_user_id()
+    body    = request.get_json(silent=True) or {}
+
+    content        = (body.get('content') or '').strip()
+    recovery_phase = (body.get('recoveryPhase') or 'processing').strip()
+
+    if not content:
+        return jsonify({"reflection": None}), 200
+
+    try:
+        from groq import Groq
+
+        prompt = f"""You are a quiet, warm companion. A woman just wrote a private journal entry.
+
+Her entry:
+\"\"\"{content}\"\"\"
+
+Her recovery phase: {PHASE_LABELS.get(recovery_phase, recovery_phase)}
+
+Write a short reflection (2-3 sentences, under 55 words).
+
+Rules:
+- NEVER reference her loss, pain, grief, burden, or weight she is carrying
+- NEVER say things like "you are carrying a lot" or "that must be hard"
+- Respond only to what she actually wrote — her words, her day, her thoughts
+- Be light, present, and real — like a friend texting back
+- End with one small forward-looking question or observation
+- No therapy language. No platitudes.
+
+Return ONLY the reflection text. No quotes, no preamble."""
+
+        client   = Groq()
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            max_tokens=150,
+            temperature=0.6,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        reflection = response.choices[0].message.content.strip().strip('"')
+        return jsonify({"reflection": reflection}), 200
+
+    except Exception as e:
+        print(f"[SafeMum AI] Journal reflection failed: {e}")
+        return jsonify({"reflection": None}), 200

@@ -91,8 +91,19 @@ GRIEF_KEYWORDS = [
 
 def detect_emotion(text: str) -> str:
     t = text.lower()
+
+    # These take priority — she is asking or reporting, not just feeling
+    if re.search(r"\b(what is|how do|how does|what are|can i|should i|is it normal|tell me about|explain|what happens|when should|why do|how long|how much|what to eat|what to avoid|what can i|is there|are there)\b", t):
+        return "seeking_info"
+
+    if re.search(r"\b(i have|i am having|i've been|i noticed|there is|it's been|since yesterday|since this morning|started|i keep|keeps happening|won't stop)\b", t):
+        return "reporting"
+
+    # Emotional states
     for emotion, pattern in EMOTIONAL_PATTERNS.items():
-        if re.search(pattern, t): return emotion
+        if re.search(pattern, t):
+            return emotion
+
     return "neutral"
 
 def detect_danger(text: str) -> bool:
@@ -655,17 +666,43 @@ JSON only: {{"headline":"one sentence","top_priority_counties":["top 3"],"key_fi
 # MEMORY MANAGEMENT
 # ─────────────────────────────────────────────────────────────────────────────
 
+# AFTER
 def _seed_memory_from_profile(memory, user_id, db_session):
-    from ..models import Pregnancy
-    pregnancy = db_session.query(Pregnancy).filter_by(user_id=user_id).order_by(Pregnancy.created_at.desc()).first()
+    from ..models import MedicalProfile, Pregnancy
+
+    pregnancy = (
+        db_session.query(Pregnancy)
+        .filter_by(user_id=user_id)
+        .order_by(Pregnancy.created_at.desc())
+        .first()
+    )
+
     if pregnancy:
-        if pregnancy.status == "lost": memory.loss_type = "pregnancy loss"
-        if pregnancy.created_at: memory.days_since_loss = (datetime.utcnow() - pregnancy.created_at).days
-    days = memory.days_since_loss or 0
-    if days <= 14: memory.recovery_phase = "early_acute"
-    elif days <= 42: memory.recovery_phase = "processing"
-    elif days <= 84: memory.recovery_phase = "rebuilding"
-    else: memory.recovery_phase = "stabilised"
+        # Only set loss context if the pregnancy actually ended in loss
+        if pregnancy.status == "lost":
+            memory.loss_type = "pregnancy loss"
+            if pregnancy.created_at:
+                memory.days_since_loss = (datetime.utcnow() - pregnancy.created_at).days
+        elif pregnancy.status == "active":
+            memory.loss_type = None          # pregnant — no loss framing
+            memory.days_since_loss = None
+            memory.recovery_phase = "active_pregnancy"
+        elif pregnancy.status == "delivered":
+            memory.loss_type = None
+            memory.recovery_phase = "postnatal"
+        else:
+            memory.loss_type = None
+            memory.days_since_loss = None
+
+    # Only compute phase from days_since_loss if a loss actually happened
+    days = memory.days_since_loss
+    if days is not None:
+        if   days <= 14: memory.recovery_phase = "early_acute"
+        elif days <= 42: memory.recovery_phase = "processing"
+        elif days <= 84: memory.recovery_phase = "rebuilding"
+        else:            memory.recovery_phase = "stabilised"
+    elif memory.recovery_phase not in ("active_pregnancy", "postnatal"):
+        memory.recovery_phase = "general_support"
 
 def _rebuild_memory_summary(memory, recent_messages: list):
     if not recent_messages: return

@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, request
 from SafeMumApp import db
 from SafeMumApp.models import User
 from flask_jwt_extended import create_access_token, set_access_cookies, unset_jwt_cookies, jwt_required, get_jwt_identity
-from SafeMumApp.utils.sms_service import send_otp_sms
 from datetime import timedelta
 import random
 import re
@@ -137,27 +136,31 @@ def register():
 # ─────────────────────────────────────────────
 @bp.route('/send-otp', methods=['POST'])
 def send_otp():
-    data = request.get_json(silent=True) or {}
+    try:
+        data = request.get_json(silent=True) or {}
 
-    phone_raw    = (data.get("phone") or "").strip()
-    country_code = (data.get("countryCode") or "").strip()
+        phone_raw    = (data.get("phone") or "").strip()
+        country_code = (data.get("countryCode") or "").strip()
 
-    if not phone_raw or not country_code:
-        return jsonify({"error": "phone and countryCode are required"}), 400
+        if not phone_raw or not country_code:
+            return jsonify({"error": "phone and countryCode are required"}), 400
 
-    full_phone = f"{country_code}{phone_raw}"
-    user = User.query.filter_by(phone=full_phone).first()
+        full_phone = f"{country_code}{phone_raw}"
+        user = User.query.filter_by(phone=full_phone).first()
 
-    if not user:
-        return jsonify({"error": "No account found for this phone number"}), 404
+        if not user:
+            return jsonify({"error": "No account found for this phone number"}), 404
 
-    code = str(random.randint(100000, 999999))
-    _set_otp(full_phone, code)
-    print(f"[DEV OTP] {full_phone} → {code}")
+        code = str(random.randint(100000, 999999))
+        _set_otp(full_phone, code)
+        print(f"[DEV OTP] {full_phone} → {code}")
 
-    # ── CHANGED: added dev_otp to response ──
-    return jsonify({"message": "OTP sent", "data": {"phone": full_phone, "dev_otp": code}}), 200
+        return jsonify({"message": "OTP sent", "data": {"phone": full_phone, "dev_otp": code}}), 200
 
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e), "trace": traceback.format_exc()}), 500
 
 # ─────────────────────────────────────────────
 # POST /patient/auth/verify-otp

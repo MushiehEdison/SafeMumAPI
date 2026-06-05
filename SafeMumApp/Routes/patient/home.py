@@ -2,12 +2,16 @@ from flask import Blueprint, jsonify, request
 from SafeMumApp import db
 from SafeMumApp.models import (
     Notification, PregnancyTip, TipDelivery,
-    Pregnancy, Hospital, SentimentRecord, Conversation,
-    Referral, MedicalProfile
+    Pregnancy, Hospital, SentimentRecord, Conversation, 
+    MedicalProfile, AIMemory, User
 )
 from SafeMumApp.utils.decorators import patient_required, get_current_user_id
 from datetime import datetime, date
 from math import radians, sin, cos, sqrt, atan2
+from SafeMumApp.Ai_Analysis.classifier import classify_risk, get_vulnerability_category
+
+
+
 
 bp = Blueprint('patient_home', __name__)
 
@@ -268,8 +272,7 @@ def get_checkin_history():
 
     # Latest sentiment record
     latest_sentiment = None
-    physical_status  = "Stable"
-    emotional_status = "Monitored"
+    emotional_status = "Monitored"  
 
     if convo_ids:
         latest_sentiment = (
@@ -288,15 +291,37 @@ def get_checkin_history():
         else:
             emotional_status = "Monitored"
 
-    # Referral / risk level
-    latest_referral = (
-        Referral.query
-        .filter_by(patient_id=user_id)
-        .order_by(Referral.created_at.desc())
-        .first()
-    )
-    risk_level = latest_referral.risk_level.capitalize() if latest_referral else "Low"
+    # Risk level — from Risk Classifier using patient's real profile
+    user    = User.query.get(user_id)
+    profile = MedicalProfile.query.filter_by(user_id=user_id).first()
+    memory  = AIMemory.query.filter_by(user_id=user_id).first()
 
+   
+    feature_input = {f"pds207{c}": 0 for c in "abcdefghijklmn"}
+    feature_input.update({
+        "pds101":    profile.age if profile and profile.age else 25,
+        "pds102":    "urban",
+        "education": profile.education_level if profile and profile.education_level else "secondary",
+        "pds201":    0,
+        "pds202":    memory.previous_losses if memory else 0,
+        "pds203":    0,
+        "county":    profile.region if profile and profile.region else "unknown",
+    })
+
+    try:
+        risk_result = classify_risk(feature_input)
+        risk_level  = risk_result["risk_level"].capitalize()
+    except Exception as e:
+        print(f"[classify_risk failed in checkin_history] {e}")
+        risk_level = "Low"
+
+    crisis_score = float(memory.consecutive_low_moods or 0) if memory else 0.0
+    try:
+        vuln = get_vulnerability_category(crisis_score=crisis_score, wealth_score=3.0)
+    except Exception as e:
+        print(f"[get_vulnerability_category failed] {e}")
+        vuln = "low"
+    physical_status = "At Risk" if risk_level == "High" else ("Monitored" if vuln == "high" else "Stable")
     # Next follow-up reminder
     next_followup = (
         Notification.query

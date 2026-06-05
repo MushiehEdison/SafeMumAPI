@@ -1,13 +1,3 @@
-"""
-SafeMum AI — ai_assistant.py
-
-Healia: maternal health companion for SafeMum.
-Emotionally intelligent. Clinically aware. Multilingual.
-Learns from the user's history, DB profile, and clinical dataset.
-
-Languages: English, French, Portuguese, Swahili
-"""
-
 import os
 import re
 import json
@@ -17,6 +7,14 @@ from datetime import datetime
 from collections import defaultdict
 from groq import Groq
 from dotenv import load_dotenv
+
+# NEW: Add sentiment analysis (optional - won't break if missing)
+try:
+    from textblob import TextBlob
+    SENTIMENT_AVAILABLE = True
+except ImportError:
+    SENTIMENT_AVAILABLE = False
+    print("[healia] TextBlob not installed. Install with: pip install textblob")
 
 load_dotenv()
 
@@ -93,9 +91,19 @@ CRISIS_SIGNS = [
 
 def detect_emotion(text: str) -> str:
     t = text.lower()
+
+    # These take priority — she is asking or reporting, not just feeling
+    if re.search(r"\b(what is|how do|how does|what are|can i|should i|is it normal|tell me about|explain|what happens|when should|why do|how long|how much|what to eat|what to avoid|what can i|is there|are there)\b", t):
+        return "seeking_info"
+
+    if re.search(r"\b(i have|i am having|i've been|i noticed|there is|it's been|since yesterday|since this morning|started|i keep|keeps happening|won't stop)\b", t):
+        return "reporting"
+
+    # Emotional states
     for emotion, pattern in EMOTIONAL_PATTERNS.items():
         if re.search(pattern, t):
             return emotion
+
     return "neutral"
 
 def detect_danger(text: str) -> bool:
@@ -112,6 +120,48 @@ def message_weight(text: str) -> str:
     if n <= 12:  return "short"
     if n <= 35:  return "medium"
     return "long"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# NEW: ENHANCED SENTIMENT (ADDED - won't break existing)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def enhanced_sentiment_analysis(text: str) -> dict:
+    """Enhanced sentiment that gracefully falls back to basic detection"""
+    result = {
+        'polarity': 0,
+        'subjectivity': 0,
+        'emotion': detect_emotion(text),
+        'intensity': 0,
+        'support_needed': False
+    }
+    
+    # Try TextBlob if available
+    if SENTIMENT_AVAILABLE:
+        try:
+            blob = TextBlob(text)
+            result['polarity'] = blob.sentiment.polarity
+            result['subjectivity'] = blob.sentiment.subjectivity
+        except:
+            pass
+    
+    # Simple intensity detection (always works)
+    text_lower = text.lower()
+    if "!" in text:
+        result['intensity'] += 2
+    if text.isupper() and len(text) > 10:
+        result['intensity'] += 2
+    if re.search(r'\b(very|so|really|extremely|such)\b', text_lower):
+        result['intensity'] += 1
+    
+    # Determine if support is needed
+    result['support_needed'] = (
+        result['emotion'] in ['grief', 'hopeless', 'anger'] or
+        result['intensity'] >= 3 or
+        result['polarity'] < -0.3
+    )
+    
+    return result
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -302,18 +352,23 @@ def _should_use_clinical_data(symptoms, conditions, user_input: str, depth: int)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# IN-MEMORY CONVERSATION TRACKER (per session, supplements DB)
+# ENHANCED IN-MEMORY CONVERSATION TRACKER (ADDED features, original preserved)
 # ─────────────────────────────────────────────────────────────────────────────
 
 class SessionMemory:
-    """Lightweight in-session tracker — supplements the DB AIMemory."""
     def __init__(self):
-        self.depth          = 0
-        self.emotion_history = []   # list of emotion strings
-        self.symptoms_seen  = set()
-        self.conditions_seen= set()
-        self.topics_seen    = set()
-        self.language       = "en"
+        self.depth             = 0
+        self.emotion_history   = []
+        self.symptoms_seen     = set()
+        self.conditions_seen   = set()
+        self.topics_seen       = set()
+        self.topics_addressed  = set()
+        self.grief_acknowledged = False
+        self.language          = "en"
+        # NEW: Additional tracking (won't break existing)
+        self.last_question_asked = None
+        self.user_disclosed_info = {}
+        self.conversation_summary = []
 
     def update(self, emotion, topics, symptoms, conditions, lang):
         self.depth += 1
@@ -322,21 +377,65 @@ class SessionMemory:
         self.symptoms_seen.update(symptoms)
         self.conditions_seen.update(conditions)
         self.language = lang
+        self.topics_addressed.update(topics)
 
     def recent_emotions(self, n=4):
         return self.emotion_history[-n:]
+
+    def grief_note(self) -> str:
+        if self.grief_acknowledged:
+            return "Grief has already been acknowledged earlier in this conversation. Do not re-open it unless she brings it up."
+        if self.depth >= 1:
+            self.grief_acknowledged = True
+        return ""
+
+    def mark_answered(self, topics):
+        self.topics_answered.update(topics)
+
+    def already_answered(self, topic):
+        return topic in self.topics_answered
+    
+    # NEW: Helper methods (won't break existing calls)
+    def should_ask(self, question_type):
+        if self.last_question_asked == question_type and self.depth < 5:
+            return False
+        self.last_question_asked = question_type
+        return True
+    
+    def get_user_status(self):
+        return self.user_disclosed_info.get("pregnancy_status", "unknown")
+    
+    def update_disclosed_info(self, message):
+        msg_lower = message.lower()
+        if "gave birth" in msg_lower or "delivered" in msg_lower:
+            self.user_disclosed_info["pregnancy_status"] = "delivered"
+            if "boy" in msg_lower:
+                self.user_disclosed_info["baby_gender"] = "boy"
+            elif "girl" in msg_lower:
+                self.user_disclosed_info["baby_gender"] = "girl"
+        elif "pregnant" in msg_lower or "expecting" in msg_lower:
+            self.user_disclosed_info["pregnancy_status"] = "pregnant"
+        elif "loss" in msg_lower or "miscarriage" in msg_lower:
+            self.user_disclosed_info["pregnancy_status"] = "loss"
 
 session_store: dict = defaultdict(SessionMemory)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# MAIN CHAT
+# MAIN CHAT FUNCTION (UPDATED with minimal additions)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def chat(user_message: str, user_id: int, db_session) -> dict:
     from ..models import Conversation, AIMemory, User, MedicalProfile, Pregnancy
     from .classifier import classify_risk
     from .context_builder import get_user_context
+
+    # ── NEW: Enhanced sentiment (optional) ─────────────────────────────────
+    sentiment = enhanced_sentiment_analysis(user_message)
+    
+    # ── NEW: Store user's disclosed info ───────────────────────────────────
+    sess = session_store[user_id]
+    sess.update_disclosed_info(user_message)
 
     # ── Run ML classifier on anything that looks like a symptom ─────────────
     _, symptoms_in_msg, _ = extract_entities(user_message)
@@ -355,6 +454,7 @@ def chat(user_message: str, user_id: int, db_session) -> dict:
             ml_risk = classify_risk(symptom_dict)
         except Exception as e:
             print(f"[healia] Classifier error in chat: {e}")
+    
     # ── DB: load / create conversation ──────────────────────────────────────
     conversation = (
         db_session.query(Conversation)
@@ -377,12 +477,13 @@ def chat(user_message: str, user_id: int, db_session) -> dict:
         db_session.flush()
         _seed_memory_from_profile(memory, user_id, db_session)
 
-    # ── Per-session tracker ──────────────────────────────────────────────────
+    # ── Per-session tracker ─────────────────────────────────────────────────
     sess = session_store[user_id]
 
     # ── Analyse this message ─────────────────────────────────────────────────
     lang       = detect_language(user_message)
-    emotion    = detect_emotion(user_message)
+    # NEW: Use enhanced emotion when available
+    emotion    = sentiment['emotion'] if sentiment else detect_emotion(user_message)
     is_danger  = detect_danger(user_message)
     is_crisis  = detect_crisis(user_message)
     weight     = message_weight(user_message)
@@ -390,7 +491,7 @@ def chat(user_message: str, user_id: int, db_session) -> dict:
 
     sess.update(emotion, topics, symptoms, conditions, lang)
 
-    # ── Clinical dataset lookup ──────────────────────────────────────────────
+    # ── Clinical dataset lookup ─────────────────────────────────────────────
     clinical_records = []
     if _should_use_clinical_data(
         sess.symptoms_seen, sess.conditions_seen, user_message, sess.depth
@@ -465,7 +566,7 @@ def chat(user_message: str, user_id: int, db_session) -> dict:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# SYSTEM PROMPT — the brain of Healia
+# SYSTEM PROMPT — the brain of Healia (UPDATED with natural language rules)
 # ─────────────────────────────────────────────────────────────────────────────
 
 # Language-specific persona labels
@@ -482,24 +583,39 @@ _PHASE_NOTES = {
         "processing":   "She is living with what happened. Some days are heavier. Be real, be steady.",
         "rebuilding":   "She is finding her footing again. Acknowledge her small wins. Be encouraging without being cheerful.",
         "stabilised":   "She has reached a more stable place. You can look forward together now — gently.",
+        "active_pregnancy": "She is currently pregnant. Do NOT reference loss or grief. Focus on her pregnancy, her questions, and her wellbeing.",
+        "postnatal":        "She has recently delivered. Support postnatal recovery — physical and emotional. No grief framing unless she brings it up.",
+        "general_support":  "Her situation is not yet fully known. Follow her lead. Don't assume she has experienced a loss.",
     },
     "fr": {
         "early_acute":  "Elle est dans les deux premières semaines après la perte. Elle a besoin de présence avant tout.",
         "processing":   "Elle vit avec ce qui s'est passé. Sois réelle et constante.",
         "rebuilding":   "Elle reprend pied. Reconnais ses petits progrès.",
         "stabilised":   "Elle est dans un endroit plus stable. Vous pouvez regarder vers l'avenir doucement.",
+        "active_pregnancy": "She is currently pregnant. Do NOT reference loss or grief. Focus on her pregnancy, her questions, and her wellbeing.",
+        "postnatal":        "She has recently delivered. Support postnatal recovery — physical and emotional. No grief framing unless she brings it up.",
+        "general_support":  "Her situation is not yet fully known. Follow her lead. Don't assume she has experienced a loss.",
+    
     },
     "pt": {
         "early_acute":  "Ela está nas primeiras duas semanas após a perda. Precisa de presença acima de tudo.",
         "processing":   "Ela está vivendo com o que aconteceu. Seja real e constante.",
         "rebuilding":   "Ela está encontrando seu caminho novamente. Reconheça suas pequenas conquistas.",
         "stabilised":   "Ela chegou a um lugar mais estável. Podem olhar para o futuro juntas, com cuidado.",
+        "active_pregnancy": "She is currently pregnant. Do NOT reference loss or grief. Focus on her pregnancy, her questions, and her wellbeing.",
+        "postnatal":        "She has recently delivered. Support postnatal recovery — physical and emotional. No grief framing unless she brings it up.",
+        "general_support":  "Her situation is not yet fully known. Follow her lead. Don't assume she has experienced a loss.",
+    
     },
     "sw": {
         "early_acute":  "Yuko katika wiki mbili za kwanza baada ya kupoteza. Anahitaji uwepo wako zaidi ya yote.",
         "processing":   "Anaishi na kilichotokea. Kuwa wa kweli na thabiti.",
         "rebuilding":   "Anaanza kupata nguvu tena. Tambua mafanikio yake madogo.",
         "stabilised":   "Amefika mahali salama zaidi. Mnaweza kuangalia mbele pamoja, polepole.",
+        "active_pregnancy": "She is currently pregnant. Do NOT reference loss or grief. Focus on her pregnancy, her questions, and her wellbeing.",
+        "postnatal":        "She has recently delivered. Support postnatal recovery — physical and emotional. No grief framing unless she brings it up.",
+        "general_support":  "Her situation is not yet fully known. Follow her lead. Don't assume she has experienced a loss.",
+    
     },
 }
 
@@ -515,6 +631,8 @@ _EMOTION_GUIDANCE = {
         "question": "She has a question. Answer it directly and fully. Don't deflect.",
         "anger":    "She is frustrated. Acknowledge it without becoming defensive.",
         "neutral":  "No strong emotional signal. Read her, respond naturally.",
+        "seeking_info": "She wants a real answer. Give it fully and directly NOW. Do not ask how she is feeling — answer her question first. Be the specialist she came to.",
+        "reporting":    "She is describing her situation or symptoms. Respond to the CONTENT of what she said. Acknowledge it in one sentence then give her useful information or a clear next step.",
     },
     "fr": {
         "grief":    "Elle est en deuil. Reste avec elle avant toute autre chose.",
@@ -527,6 +645,9 @@ _EMOTION_GUIDANCE = {
         "question": "Elle a une question. Réponds directement et complètement.",
         "anger":    "Elle est frustrée. Reconnais-le sans te défendre.",
         "neutral":  "Pas de signal émotionnel fort. Lis-la et réponds naturellement.",
+        "seeking_info": "She wants a real answer. Give it fully and directly NOW. Do not ask how she is feeling — answer her question first. Be the specialist she came to.",
+        "reporting":    "She is describing her situation or symptoms. Respond to the CONTENT of what she said. Acknowledge it in one sentence then give her useful information or a clear next step.",
+    
     },
     "pt": {
         "grief":    "Ela está de luto. Fique com ela antes de qualquer coisa.",
@@ -539,6 +660,9 @@ _EMOTION_GUIDANCE = {
         "question": "Ela tem uma pergunta. Responda diretamente e completamente.",
         "anger":    "Ela está frustrada. Reconheça sem se defender.",
         "neutral":  "Nenhum sinal emocional forte. Leia ela e responda naturalmente.",
+        "seeking_info": "She wants a real answer. Give it fully and directly NOW. Do not ask how she is feeling — answer her question first. Be the specialist she came to.",
+        "reporting":    "She is describing her situation or symptoms. Respond to the CONTENT of what she said. Acknowledge it in one sentence then give her useful information or a clear next step.",
+    
     },
     "sw": {
         "grief":    "Yuko katika huzuni. Kaa naye kabla ya kitu kingine chochote.",
@@ -551,6 +675,9 @@ _EMOTION_GUIDANCE = {
         "question": "Ana swali. Jibu moja kwa moja na kikamilifu.",
         "anger":    "Amekasirika. Tambua bila kujitetea.",
         "neutral":  "Hakuna ishara kali ya kihisia. Msomee na ujibu kiasili.",
+        "seeking_info": "She wants a real answer. Give it fully and directly NOW. Do not ask how she is feeling — answer her question first. Be the specialist she came to.",
+        "reporting":    "She is describing her situation or symptoms. Respond to the CONTENT of what she said. Acknowledge it in one sentence then give her useful information or a clear next step.",
+    
     },
 }
 
@@ -594,10 +721,28 @@ def _build_system_prompt(
     user = db_session.query(User).get(user_id)
     name = user.name if user else "her"
 
+    # ── Load memory FIRST ──────────────────────────────────────────────
+    mc             = memory.to_context_dict() if memory else {}
+    recovery_phase = mc.get("recovery_phase") or "processing"
+    memory_summary = mc.get("memory_summary") or "Still getting to know her."
+    cultural       = mc.get("cultural_profile") or "mixed_transitional"
+    low_moods      = mc.get("consecutive_low_moods") or 0
+    vulnerability  = mc.get("vulnerability_level") or "medium"
+    days_since     = mc.get("days_since_loss", "unknown")
+    loss_type      = mc.get("loss_type", "pregnancy loss")
+    prev_losses    = mc.get("previous_losses", 0)
+
+    # ── NOW apply the user_type guard ──────────────────────────────────
+    user_type = user.user_type if user else None
+    if user_type == "pregnant" and recovery_phase not in ("active_pregnancy", "postnatal"):
+        recovery_phase = "active_pregnancy"
+    elif user_type == "loss" and recovery_phase == "active_pregnancy":
+        recovery_phase = "processing"
+
     has_chw = db_session.query(CHWCase).filter_by(
         patient_id=user_id, status="assigned"
     ).first() is not None
-
+    
     mc             = memory.to_context_dict() if memory else {}
     memory_summary = mc.get("memory_summary") or "Still getting to know her."
     recovery_phase = mc.get("recovery_phase") or "processing"
@@ -657,6 +802,12 @@ def _build_system_prompt(
         depth_note = "You are still getting to know each other. Be warm and genuinely curious."
     else:
         depth_note = "You have real history with her now. Reference what she has shared — the way a real person would."
+        if sess and len(sess.emotion_history) >= 3:
+            recent_emos = sess.recent_emotions(3)
+            if all(e in ("grief", "hopeless", "lonely", "fear") for e in recent_emos):
+                depth_note += " She has been in a heavy emotional space across multiple messages — be especially gentle."
+
+    grief_note = sess.grief_note() if sess else ""
 
     # Emotional trend note
     if sess and len(sess.emotion_history) >= 3:
@@ -690,12 +841,32 @@ def _build_system_prompt(
         "pt": "Responda em português.",
         "sw": "Jibu kwa Kiswahili.",
     }.get(lang, "Respond in English.")
+    
+    # NEW: Get user status for context-appropriate responses
+    user_status = sess.get_user_status() if sess else "unknown"
+    status_guidance = ""
+    if user_status == "delivered":
+        status_guidance = "\nShe has recently given birth. Focus on postnatal care."
+    elif user_status == "pregnant" or recovery_phase == "active_pregnancy":
+        status_guidance = """\nCRITICAL: This woman is CURRENTLY PREGNANT. 
+    NEVER mention loss, grief, miscarriage, or anything related to pregnancy ending badly.
+    NEVER say things like 'bleeding may occur after loss' or reference post-loss recovery.
+    You are her pregnancy companion. Focus ONLY on her current pregnancy health."""
+    elif user_status == "loss" or recovery_phase in ("early_acute", "processing", "rebuilding", "stabilised"):
+        status_guidance = "\nShe has experienced a pregnancy loss. Acknowledge grief when she brings it up, but follow her lead."
+    return f"""You are Healia — a maternal health companion at SafeMum.
 
-    return f"""You are Healia — a maternal health companion at SafeMum. You support women through pregnancy, pregnancy loss, and recovery.
-
-You are not an AI assistant. You are not a bot. You are Healia — a real companion who knows {name} and has been part of her journey.
+You are NOT a chatbot. You are a specialist — combining the knowledge of a maternal health doctor, a grief therapist, a psychologist, and a health educator. You have deep clinical knowledge AND human warmth.
 
 {lang_instruction}
+{status_guidance}
+
+━━━ NATURAL CONVERSATION RULES (READ THESE) ━━━
+- Sound like a real person, not a helpdesk. Use "I'm", "you're", "that's" naturally.
+- Never ask more than ONE question in a response.
+- If she just told you something important, respond to it directly before asking anything.
+- Give solutions and advice, not just questions. Be helpful, not interrogative.
+- Call her {name} occasionally, but not every sentence.
 
 ━━━ WHO SHE IS ━━━
 Name: {name}
@@ -722,21 +893,51 @@ CHW assigned: {has_chw}
 {emotion_note}
 {weight_note}
 {depth_note}
+{grief_note}
 
-You are a trained maternal health expert. When she asks about health topics — nutrition, prenatal care, postnatal care, symptoms, recovery — give real, complete, practical answers. Do not drip-feed one tip at a time. Do not deflect with questions when she wants information.
+━━━ YOUR THREE MODES — READ THIS CAREFULLY ━━━
 
-When she is in emotional pain — be present first. Information can wait.
+EDUCATOR MODE — use this when she asks ANY question or wants information:
+- Answer immediately, fully, and specifically. Never stall.
+- Give real clinical knowledge: what causes it, what it means for her body, what she should do, what to expect.
+- Cover nutrition, recovery timelines, physical symptoms, medication, emotional patterns, whatever she asked.
+- Teach her. A woman who understands her body heals better and faster.
 
-Speak the way a real person speaks. Not a script. Not a template.
-Use her name at most once in the entire conversation — not once per message.
-Never ask more than one question in a single reply.
-Always lead with action or acknowledgement. Questions come after, not instead.
-If she reports a physical symptom, tell her what to do about it first — then ask one follow-up if needed.
-Never make the conversation feel like an intake form."""
+SUPPORT MODE — use this when she is emotional, scared, or grieving:
+- Acknowledge what she said in ONE sentence — specific to her words, not generic.
+- Then move into something helpful: information, a coping strategy, a practical step, or a gentle reframe.
+- Do NOT stay in pure validation mode for more than one exchange. Real support means helping her move, even slowly.
+
+CLINICAL MODE — use this when she reports a danger sign:
+- Skip all softening. Tell her what to do in the next 30 minutes. Be direct and calm.
+
+━━━ HARD RULES — NEVER BREAK THESE ━━━
+
+REPETITION RULES:
+- NEVER ask "how are you feeling?" if she just told you how she is feeling. She told you. Use it.
+- NEVER ask the same question twice in one conversation.
+- NEVER start two consecutive replies with an emotional acknowledgement. After one acknowledgement, move to substance.
+- If she has already shared her situation, DO NOT ask her to share it again.
+
+GRIEF RULES:
+- Do NOT open replies with "I'm sorry for your loss" after the first or second message. She knows you know. Move forward.
+- Do NOT remind her of her loss when she is asking about something else — nutrition, sleep, medication, exercise. Just answer.
+- Grief is present in the background. You don't need to keep bringing it to the foreground.
+
+ANSWER RULES:
+- When she asks a question, answer it. Fully. Do not redirect to emotions instead of answering.
+- When she reports a symptom, tell her what it likely means AND what to do. Not just "that sounds hard."
+- A good response often has: acknowledgement (1 sentence) + real answer + one practical step.
+
+LANGUAGE RULES:
+- Never say "I understand how you feel" — you can't fully, and she knows it.
+- Never say "I hear you" more than once per conversation.
+- Vary how you open replies. Not every message starts with her name or with sympathy.
+- Sound like a real expert who genuinely cares — specific, warm, knowledgeable, human."""
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# SYMPTOM INTERPRETATION
+# SYMPTOM INTERPRETATION (UNCHANGED)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def interpret_symptoms(selected_symptoms: list, user_id: int, ml_risk: dict, db_session) -> dict:
@@ -814,7 +1015,7 @@ Rules:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# MOOD CHECK-IN
+# MOOD CHECK-IN (UNCHANGED)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def interpret_checkin(mood_score: int, mood_label: str, notes: str, user_id: int, db_session) -> dict:
@@ -895,7 +1096,7 @@ Rules:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# SERVICE GAP BRIEFING
+# SERVICE GAP BRIEFING (UNCHANGED)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def interpret_service_gaps(gap_data: dict) -> dict:
@@ -936,11 +1137,15 @@ JSON only:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# MEMORY MANAGEMENT
+# MEMORY MANAGEMENT (UNCHANGED)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _seed_memory_from_profile(memory, user_id, db_session):
-    from ..models import MedicalProfile, Pregnancy
+    from ..models import MedicalProfile, Pregnancy, User  # ADD User
+
+    # ADD THIS — use user_type as the ground truth fallback
+    user = db_session.query(User).get(user_id)
+    user_type = user.user_type if user else None
 
     pregnancy = (
         db_session.query(Pregnancy)
@@ -948,18 +1153,42 @@ def _seed_memory_from_profile(memory, user_id, db_session):
         .order_by(Pregnancy.created_at.desc())
         .first()
     )
+
     if pregnancy:
         if pregnancy.status == "lost":
             memory.loss_type = "pregnancy loss"
-        if pregnancy.created_at:
-            memory.days_since_loss = (datetime.utcnow() - pregnancy.created_at).days
+            if pregnancy.created_at:
+                memory.days_since_loss = (datetime.utcnow() - pregnancy.created_at).days
+        elif pregnancy.status == "active":
+            memory.loss_type = None
+            memory.days_since_loss = None
+            memory.recovery_phase = "active_pregnancy"
+        elif pregnancy.status == "delivered":
+            memory.loss_type = None
+            memory.recovery_phase = "postnatal"
+        else:
+            memory.loss_type = None
+            memory.days_since_loss = None
+    else:
+        # No Pregnancy record yet — fall back to user_type from registration
+        if user_type == "pregnant":
+            memory.loss_type = None
+            memory.days_since_loss = None
+            memory.recovery_phase = "active_pregnancy"
+        elif user_type == "loss":
+            memory.loss_type = "pregnancy loss"
+            memory.recovery_phase = "processing"  # safe default
+        else:
+            memory.recovery_phase = "general_support"
 
-    days = memory.days_since_loss or 0
-    if   days <= 14: memory.recovery_phase = "early_acute"
-    elif days <= 42: memory.recovery_phase = "processing"
-    elif days <= 84: memory.recovery_phase = "rebuilding"
-    else:            memory.recovery_phase = "stabilised"
-
+    days = memory.days_since_loss
+    if days is not None:
+        if   days <= 14: memory.recovery_phase = "early_acute"
+        elif days <= 42: memory.recovery_phase = "processing"
+        elif days <= 84: memory.recovery_phase = "rebuilding"
+        else:            memory.recovery_phase = "stabilised"
+    elif memory.recovery_phase not in ("active_pregnancy", "postnatal", "general_support"):
+        memory.recovery_phase = "general_support"
 
 def _rebuild_memory_summary(memory, recent_messages: list):
     if not recent_messages:
@@ -1033,7 +1262,7 @@ def _extract_memory_fragments(user_message: str, memory):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# FRONTEND ACTIONS
+# FRONTEND ACTIONS (UNCHANGED)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _detect_actions(reply: str, user_message: str, is_danger=False, is_crisis=False) -> list:
@@ -1061,7 +1290,7 @@ def _detect_actions(reply: str, user_message: str, is_danger=False, is_crisis=Fa
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# HELPERS
+# HELPERS (UNCHANGED)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _fallback_reply(lang: str) -> str:

@@ -2,10 +2,11 @@ from flask import Blueprint, jsonify, request
 from SafeMumApp import db
 from SafeMumApp.models import (
     User, MedicalProfile, Hospital, CommunityHealthWorker,
-    EmergencyAlert, Notification
+    EmergencyAlert, Notification, CHWCase
 )
 from SafeMumApp.utils.decorators import patient_required, get_current_user_id
 from math import radians, sin, cos, sqrt, atan2
+from datetime import datetime
 
 bp = Blueprint('patient_emergency', __name__)
 
@@ -157,10 +158,8 @@ def send_emergency_alert():
             # EmergencyAlert.hospital_id is non-nullable → resolve one
             linked_hospital_id = fallback_hospital_id
             if not linked_hospital_id:
-                if not fallback_hospital:
-                    fallback_hospital = _nearest_hospital(pat_lat, pat_lng)
-                if fallback_hospital:
-                    linked_hospital_id = fallback_hospital.id
+                any_hospital = Hospital.query.filter_by(is_available=True).first()
+                linked_hospital_id = any_hospital.id if any_hospital else None
 
             if not linked_hospital_id:
                 errors.append("Could not link CHW alert to any hospital — no hospital available")
@@ -178,7 +177,21 @@ def send_emergency_alert():
                 status              = 'sent',
             )
             db.session.add(alert)
+            
+            existing_case = CHWCase.query.filter_by(
+                chw_id=chw.id,
+                patient_id=user_id
+            ).first()
 
+            if not existing_case:
+                new_case = CHWCase(
+                    chw_id     = chw.id,
+                    patient_id = user_id,
+                    status     = 'assigned',
+                    notes      = f"Patient sent emergency alert: {symptom}. Risk: {risk.upper()}.",
+                    assigned_at = datetime.utcnow(),
+                )
+                db.session.add(new_case)
             db.session.add(Notification(
                 user_id     = user_id,
                 hospital_id = None,
