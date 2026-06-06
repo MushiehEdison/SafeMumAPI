@@ -23,10 +23,11 @@ def create_app():
     migrate.init_app(app, db)
     bcrypt.init_app(app)
     jwt.init_app(app)
-    CORS(
-        app,
+    CORS(app, 
+        origins=[os.getenv("FRONTEND_URL")],
         supports_credentials=True,
-        origins=[app.config["FRONTEND_URL"]],
+        allow_headers=["Content-Type", "Authorization"],
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
     )
 
     # Import models so Flask-Migrate detects all tables
