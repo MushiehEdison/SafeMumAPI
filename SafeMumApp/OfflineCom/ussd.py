@@ -1,14 +1,4 @@
-"""
-OfflineCom — USSD Channel  (fixed)
-====================================
-Changes vs original:
-- _find_nearest_chw / _find_nearest_hospital replaced by location_utils
-  → fuzzy text matching (difflib + token overlap) so typos & partial
-    names still resolve correctly
-- Location confirmation screen shows what was found so the user can trust it
-- AI health/clinic flow now passes the raw location string to the AI prompt
-  so Healia can give location-specific advice
-"""
+
 
 from flask import Blueprint, request, make_response
 from . import session_store as store

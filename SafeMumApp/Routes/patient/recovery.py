@@ -200,7 +200,7 @@ Trend guidance: {trend_note}
 
 Return ONLY a JSON object with exactly these two keys:
 {{
-  "response": "3-4 sentences. Acknowledge her mood and note specifically — not generically. If trend is declining or flagged, gently mention a counsellor is available. End with one practical encouragement or question. Never start with 'I am sorry for your loss'. Never say 'I hear you' or 'I understand'. Sound like a real person who knows her.",
+  "response": "3-4 sentences. Acknowledge her mood and note specifically — not generically. If trend is declining or flagged, gently mention a counsellor is available. End with one practical encouragement or question. Never start with '. Never say 'I hear you' or 'I understand'. Sound like a real person who knows her.",
   "conclusion": "2-3 sentences clinical summary based on ALL her answers today — physical and emotional. Plain language. What is going well, what needs watching, one clear recommendation."
 }}
 
