@@ -9,7 +9,7 @@
 
 A Flask REST API backend for **SafeMum AI** — a post-pregnancy loss care platform for Sub-Saharan Africa. Built for the AI for Reproductive Health in Africa Hackathon 2026, Track I.
 
-> **mushieh edison ai:** [github.com/yourname/SAFEMUM](https://github.com/yourname/SAFEMUM)
+ [github.com/MushiehEdison/SAFEMUM-AI](https://github.com/MushiehEdison/SAFEMUM-AI)
 
 ---
 
@@ -257,13 +257,13 @@ Public
 
 ---
 
-## mushieh edison ai
+
 
 **Prerequisites:** Python 3.8+, PostgreSQL running locally or on Railway
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/yourname/safemumAPI.git
+git clone https://github.com/MushiehEdison/safemumAPI.git
 cd safemumAPI
 
 # 2. Create and activate virtual environment
@@ -340,6 +340,6 @@ Datasets must be present in `SafeMumApp/Ai_Analysis/Datasets/` before running. D
 
 ## Related
 
-- **mushieh edison ai:** [github.com/yourname/SAFEMUM](https://github.com/yourname/SAFEMUM)
+- [github.com/MushiehEdison/SAFEMUM-AI](https://github.com/yourname/SAFEMUM-AI)
 - **Hackathon:** AI for Reproductive Health in Africa 2026 — Track I
 - **Team:** SafeMum AI — Horizon Tech Solution, Buea, Cameroon
