@@ -1,14 +1,16 @@
 """
-OfflineCom — Voice Channel
-===========================
-Uses the exact same stack as voice_ai.py:
-  TTS : edge-tts  (high-quality African/French/Portuguese voices)
-  STT : Groq Whisper large-v3 (best accent handling, free)
-  LLM : Groq llama-3.3-70b-versatile
+OfflineCom — Voice Channel  (fixed)
+=====================================
+Root cause of the 404 on voice:
+  _base() was calling Config.BASE_URL which was empty string "".
+  This produced callback URLs like "/voice/language" with no host,
+  so Africa's Talking (or the simulator) fetched a relative path
+  and hit Netlify's 404 page.
 
-Two modes:
-  1. Africa's Talking XML flow  (/voice/answer, /voice/language, etc.)
-  2. Simulator endpoints        (/voice/tts, /voice/stt) — called by Simulator.jsx
+Fix:
+  _base() now calls Config.base_url() which falls back to
+  RAILWAY_PUBLIC_DOMAIN if BASE_URL is unset, and finally to
+  http://127.0.0.1:{PORT} for local dev.
 """
 
 import asyncio
@@ -28,7 +30,7 @@ voice_bp = Blueprint("voice", __name__)
 
 _groq = Groq(api_key=Config.GROQ_API_KEY)
 
-# ── Voice map — mirrors voice_ai.py exactly ───────────────────────────────────
+# ── Voice map ─────────────────────────────────────────────────────────────────
 VOICE_MAP = {
     "en-NG": "en-NG-EzinneNeural",
     "en-GH": "en-GB-SoniaNeural",
@@ -48,12 +50,6 @@ LANG_TO_VOICE = {
     "en": "en-KE-AsiliaNeural",
     "fr": "fr-FR-DeniseNeural",
     "pt": "pt-BR-FranciscaNeural",
-}
-
-LANG_TO_WHISPER = {
-    "en": "en",
-    "fr": "fr",
-    "pt": "pt",
 }
 
 
@@ -80,92 +76,24 @@ def _get_suffix(mime_or_name: str) -> str:
     return ".webm"
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# SIMULATOR ENDPOINTS  (called by Simulator.jsx — no JWT needed here)
-# ─────────────────────────────────────────────────────────────────────────────
-
-@voice_bp.route("/tts", methods=["POST"])
-def tts_endpoint():
+# ── THE FIX: always use Config.base_url() ─────────────────────────────────────
+def _base() -> str:
     """
-    Body: { "text": "...", "lang": "en" }
-    Returns: audio/mpeg stream (edge-tts)
-    Matches voice_ai.py /tts but without JWT for USSD/voice simulator.
+    Returns the correct server root for building callback URLs.
+
+    Priority:
+    1. BASE_URL env var (set this in Railway / production)
+    2. RAILWAY_PUBLIC_DOMAIN auto-injected by Railway
+    3. http://127.0.0.1:{PORT}  — local dev only
     """
-    data  = request.get_json(silent=True) or {}
-    text  = (data.get("text") or "").strip()
-    lang  = data.get("lang", "en")
-
-    if not text:
-        return jsonify({"error": "No text provided"}), 400
-
-    voice = LANG_TO_VOICE.get(lang, DEFAULT_VOICE)
-
-    try:
-        audio_bytes = asyncio.run(_synthesize(text, voice))
-        return Response(
-            audio_bytes,
-            mimetype="audio/mpeg",
-            headers={
-                "Content-Disposition": "inline; filename=response.mp3",
-                "Cache-Control":       "no-store",
-                "Access-Control-Allow-Origin": "*",
-            },
-        )
-    except Exception as e:
-        print(f"[OfflineCom TTS] error: {e}")
-        return jsonify({"error": "TTS failed", "detail": str(e)}), 500
+    return Config.base_url()
 
 
-@voice_bp.route("/stt", methods=["POST"])
-def stt_endpoint():
-    """
-    Multipart form: audio file + optional lang field.
-    Returns: { "text": "...", "lang_detected": "en" }
-    Uses Groq Whisper large-v3 — mirrors voice_ai.py /stt.
-    """
-    if "audio" not in request.files:
-        return jsonify({"error": "No audio file"}), 400
-
-    audio_file = request.files["audio"]
-    lang_hint  = request.form.get("lang", "en")
-
-    suffix = _get_suffix(audio_file.mimetype or audio_file.filename or "")
-    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-        audio_file.save(tmp.name)
-        tmp_path = tmp.name
-
-    try:
-        with open(tmp_path, "rb") as f:
-            params = {
-                "file":            (audio_file.filename or f"audio{suffix}", f),
-                "model":           "whisper-large-v3",
-                "response_format": "json",
-                "temperature":     0.0,
-            }
-            if lang_hint:
-                params["language"] = lang_hint.split("-")[0]
-
-            transcription = _groq.audio.transcriptions.create(**params)
-
-        return jsonify({
-            "text":          transcription.text.strip(),
-            "lang_detected": getattr(transcription, "language", lang_hint),
-        }), 200
-
-    except Exception as e:
-        print(f"[OfflineCom STT] error: {e}")
-        return jsonify({"error": "STT failed", "detail": str(e)}), 500
-
-    finally:
-        try:
-            os.unlink(tmp_path)
-        except Exception:
-            pass
+def _t(lang: str, en: str, fr: str, pt: str) -> str:
+    return {"en": en, "fr": fr, "pt": pt}.get(lang, en)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# AFRICA'S TALKING XML FLOW
-# ─────────────────────────────────────────────────────────────────────────────
+# ── XML helpers ───────────────────────────────────────────────────────────────
 
 def _xml_response(*elements) -> str:
     root = ET.Element("Response")
@@ -201,13 +129,78 @@ def _xml_reply(xml_str: str):
     return resp
 
 
-def _base() -> str:
-    return Config.BASE_URL.rstrip("/")
+# ─────────────────────────────────────────────────────────────────────────────
+# SIMULATOR ENDPOINTS  (no JWT — called by PhoneSimulator.jsx)
+# ─────────────────────────────────────────────────────────────────────────────
+
+@voice_bp.route("/tts", methods=["POST"])
+def tts_endpoint():
+    data  = request.get_json(silent=True) or {}
+    text  = (data.get("text") or "").strip()
+    lang  = data.get("lang", "en")
+
+    if not text:
+        return jsonify({"error": "No text provided"}), 400
+
+    voice = LANG_TO_VOICE.get(lang, DEFAULT_VOICE)
+    try:
+        audio_bytes = asyncio.run(_synthesize(text, voice))
+        return Response(
+            audio_bytes,
+            mimetype="audio/mpeg",
+            headers={
+                "Content-Disposition": "inline; filename=response.mp3",
+                "Cache-Control": "no-store",
+                "Access-Control-Allow-Origin": "*",
+            },
+        )
+    except Exception as e:
+        print(f"[Voice TTS] error: {e}")
+        return jsonify({"error": "TTS failed", "detail": str(e)}), 500
 
 
-def _t(lang: str, en: str, fr: str, pt: str) -> str:
-    return {"en": en, "fr": fr, "pt": pt}.get(lang, en)
+@voice_bp.route("/stt", methods=["POST"])
+def stt_endpoint():
+    if "audio" not in request.files:
+        return jsonify({"error": "No audio file"}), 400
 
+    audio_file = request.files["audio"]
+    lang_hint  = request.form.get("lang", "en")
+    suffix     = _get_suffix(audio_file.mimetype or audio_file.filename or "")
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+        audio_file.save(tmp.name)
+        tmp_path = tmp.name
+
+    try:
+        with open(tmp_path, "rb") as f:
+            params = {
+                "file":            (audio_file.filename or f"audio{suffix}", f),
+                "model":           "whisper-large-v3",
+                "response_format": "json",
+                "temperature":     0.0,
+            }
+            if lang_hint:
+                params["language"] = lang_hint.split("-")[0]
+            transcription = _groq.audio.transcriptions.create(**params)
+
+        return jsonify({
+            "text":          transcription.text.strip(),
+            "lang_detected": getattr(transcription, "language", lang_hint),
+        }), 200
+    except Exception as e:
+        print(f"[Voice STT] error: {e}")
+        return jsonify({"error": "STT failed", "detail": str(e)}), 500
+    finally:
+        try:
+            os.unlink(tmp_path)
+        except Exception:
+            pass
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# AFRICA'S TALKING XML FLOW
+# ─────────────────────────────────────────────────────────────────────────────
 
 @voice_bp.route("/answer", methods=["POST"])
 def voice_answer():
@@ -215,6 +208,7 @@ def voice_answer():
     caller = request.form.get("callerNumber", "")
     store.save(sid, {"caller": caller, "lang": "en", "history": [], "topic": "general"})
 
+    # _base() now always returns a real URL — callbacks will work
     xml = _xml_response(
         _get_digits(
             prompt=(
@@ -236,14 +230,14 @@ def voice_language():
     digits = request.form.get("dtmfDigits", "1")
 
     session = store.get(sid) or {}
-    lang    = {"1": "en", "2": "fr", "3": "pt"}.get(digits, "en")
+    lang = {"1": "en", "2": "fr", "3": "pt"}.get(digits, "en")
     session["lang"] = lang
     store.save(sid, session)
 
     prompt = _t(lang,
-        "Welcome. Press one for a health concern. Press two to find a clinic. Press three for grief support. Press nine for emergency.",
-        "Bienvenue. Appuyez sur un pour un probleme de sante. Deux pour une clinique. Trois pour soutien. Neuf pour urgence.",
-        "Bem-vinda. Um para problema de saude. Dois para clinica. Tres para apoio. Nove para emergencia.",
+        "Press one for a health concern. Press two to find a clinic. Press three for grief support. Press nine for emergency.",
+        "Appuyez sur un pour un probleme de sante. Deux pour une clinique. Trois pour soutien. Neuf pour urgence.",
+        "Um para problema de saude. Dois para clinica. Tres para apoio. Nove para emergencia.",
     )
     xml = _xml_response(
         _get_digits(prompt=prompt, callback=f"{_base()}/voice/menu", num=1, timeout=15)
@@ -262,8 +256,8 @@ def voice_menu():
     if digits == "9":
         msg = _t(lang,
             "This is an emergency. Please go to the nearest clinic immediately, or call zero eight hundred, seven two three, two five three. That line is free, twenty four hours.",
-            "C'est une urgence. Allez immediatement a la clinique la plus proche, ou appelez le zero huit cents, sept deux trois, deux cinq trois. Gratuit, vingt quatre heures.",
-            "Esta e uma emergencia. Va imediatamente a clinica mais proxima, ou ligue zero oitocentos, sete dois tres, dois cinco tres. Gratuito, vinte e quatro horas.",
+            "C'est une urgence. Allez a la clinique la plus proche ou appelez le zero huit cents, sept deux trois, deux cinq trois.",
+            "Esta e uma emergencia. Va a clinica mais proxima ou ligue zero oitocentos, sete dois tres, dois cinco tres.",
         )
         return _xml_reply(_xml_response(_say(msg)))
 
@@ -275,8 +269,8 @@ def voice_menu():
     prompts = {
         "health": _t(lang,
             "Please describe your health concern after the beep. Press hash when done.",
-            "Veuillez decrire votre probleme de sante apres le bip. Appuyez sur diese.",
-            "Descreva seu problema de saude apos o bipe. Pressione sustenido.",
+            "Veuillez decrire votre probleme de sante apres le bip.",
+            "Descreva seu problema de saude apos o bipe.",
         ),
         "clinic": _t(lang,
             "Please say your town or area name after the beep.",
@@ -284,13 +278,15 @@ def voice_menu():
             "Diga o nome da sua cidade apos o bipe.",
         ),
         "grief": _t(lang,
-            "I am here to listen. Please share how you are feeling after the beep. Take your time. There is no rush.",
-            "Je suis la pour vous ecouter. Partagez comment vous vous sentez apres le bip. Prenez votre temps.",
-            "Estou aqui para ouvir. Compartilhe como voce esta se sentindo apos o bipe. Sem pressa.",
+            "I am here to listen. Please share how you are feeling after the beep. Take your time.",
+            "Je suis la pour vous ecouter. Partagez comment vous vous sentez apres le bip.",
+            "Estou aqui para ouvir. Compartilhe como voce esta se sentindo apos o bipe.",
         ),
     }
     prompt = prompts.get(topic, prompts["health"])
-    xml = _xml_response(_record(prompt=prompt, callback=f"{_base()}/voice/transcription"))
+    xml = _xml_response(
+        _record(prompt=prompt, callback=f"{_base()}/voice/transcription")
+    )
     return _xml_reply(xml)
 
 
@@ -312,7 +308,7 @@ def voice_transcription():
     if not transcript:
         retry = _t(lang,
             "I did not catch that. Please speak clearly after the beep.",
-            "Je n'ai pas compris. Veuillez parler clairement apres le bip.",
+            "Je n'ai pas compris. Veuillez parler apres le bip.",
             "Nao entendi. Fale claramente apos o bipe.",
         )
         return _xml_reply(_xml_response(
@@ -334,7 +330,6 @@ def voice_transcription():
         "pt": "Responda SOMENTE em portugues.",
     }[lang]
 
-    ai_input = transcript
     if not history:
         ctx = ai.build_context_prefix(topic)
         ai_input = f"[{lang_instruction}] [{ctx}]\n{transcript}"
@@ -355,7 +350,11 @@ def voice_transcription():
     )
     xml = _xml_response(
         _say(groq_reply),
-        _get_digits(prompt=continue_prompt, callback=f"{_base()}/voice/continue", timeout=8),
+        _get_digits(
+            prompt=continue_prompt,
+            callback=f"{_base()}/voice/continue",
+            timeout=8,
+        ),
     )
     return _xml_reply(xml)
 
@@ -394,5 +393,5 @@ def voice_hangup():
     duration = request.form.get("durationInSeconds", "0")
     caller   = request.form.get("callerNumber", "unknown")
     store.delete(sid)
-    print(f"[OfflineCom Voice] Ended — caller: {caller}, duration: {duration}s")
+    print(f"[Voice] Ended — caller: {caller}, duration: {duration}s")
     return {"status": "ok"}, 200
