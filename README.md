@@ -342,4 +342,4 @@ Datasets must be present in `SafeMumApp/Ai_Analysis/Datasets/` before running. D
 
 - [github.com/MushiehEdison/SAFEMUM-AI](https://github.com/yourname/SAFEMUM-AI)
 - **Hackathon:** AI for Reproductive Health in Africa 2026 — Track I
-- **Team:** SafeMum AI — Horizon Tech Solution, Buea, Cameroon
+- **Team:** SafeMum AI 
