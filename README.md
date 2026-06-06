@@ -1,203 +1,345 @@
-# africastalking-python
+# SafeMum AI — Backend API
 
-![](https://img.shields.io/pypi/v/africastalking.svg)
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![Flask](https://img.shields.io/badge/Flask-3.x-black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-orange)
+![Groq](https://img.shields.io/badge/Groq-LLaMA3--70B-green)
+![Railway](https://img.shields.io/badge/Deployed-Railway-purple)
 
-> The SDK provides convenient access to the Africa's Talking APIs to python apps.
+A Flask REST API backend for **SafeMum AI** — a post-pregnancy loss care platform for Sub-Saharan Africa. Built for the AI for Reproductive Health in Africa Hackathon 2026, Track I.
 
+> **mushieh edison ai:** [github.com/yourname/SAFEMUM](https://github.com/yourname/SAFEMUM)
 
-## Documentation
-Take a look at the [API docs here](https://developers.africastalking.com).
+---
 
-## Install
+## What this backend does
 
-```bash
-$ pip3 install africastalking # python 3.8.x
+- Handles authentication for five actor types — patient, CHW, facility, NGO, admin — using JWT stored in httpOnly cookies
+- Powers the AI health assistant using a 3-layer pipeline: scikit-learn ML models → Groq LLM interpretation → personalised app response
+- Manages emergency alerts, smart referrals, CHW case assignments, and facility routing
+- Serves real facility data seeded from 328 Kenyan health facilities
+- Exposes USSD and voice call webhooks for Africa's Talking integration (offline access layer)
+- Generates data-driven insights for the admin dashboard using trained ML models
 
-OR
+---
 
-$ python3 -m pip install africastalking # python 3.8.x
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Flask 3.x, Python 3.8+ |
+| Database | PostgreSQL 16 via SQLAlchemy ORM |
+| Migrations | Flask-Migrate (Alembic) |
+| Auth | Flask-JWT-Extended — httpOnly cookies |
+| Password hashing | Flask-Bcrypt |
+| CORS | Flask-CORS |
+| AI / LLM | Groq API — LLaMA3-70B |
+| ML models | scikit-learn — Random Forest, Logistic Regression, Gradient Boosting, KMeans |
+| Offline access | Africa's Talking — USSD and Voice webhooks |
+| Production server | Gunicorn |
+| Deployment | Railway |
+
+---
+
+## Folder structure
 
 ```
+safemumAPI/
+├── app.py                          ← entry point
+├── requirements.txt
+├── .env                            ← not committed
+├── .env.example
+└── SafeMumApp/
+    ├── __init__.py                 ← app factory, create_app(), blueprint registration
+    ├── config.py                   ← all config loaded from .env
+    ├── models.py                   ← all 26 SQLAlchemy models in one file
+    ├── services.py
+    │
+    ├── Routes/
+    │   ├── patient/
+    │   │   ├── auth.py             ← register, OTP login, logout, /me
+    │   │   ├── home.py             ← home page data, recovery overview
+    │   │   ├── chat.py             ← AI assistant conversations
+    │   │   ├── recovery.py         ← SafeRecovery Hub, check-ins, community
+    │   │   ├── reminders.py        ← reminders CRUD
+    │   │   ├── emergency.py        ← emergency alert trigger
+    │   │   ├── map.py              ← facility map, search, filter
+    │   │   ├── profile.py          ← medical profile, pregnancy history
+    │   │   └── voice_ai.py         ← voice call AI handler
+    │   │
+    │   ├── chw/
+    │   │   ├── auth.py             ← register, login, logout
+    │   │   ├── dashboard.py        ← stats, urgent cases, activity
+    │   │   ├── cases.py            ← case list, case detail, update status
+    │   │   ├── patients.py         ← patient lookup
+    │   │   ├── profile.py          ← CHW profile, coverage area
+    │   │   └── chw_community.py
+    │   │
+    │   ├── facility/
+    │   │   ├── auth.py             ← register, login, logout
+    │   │   ├── dashboard.py        ← incoming alerts, referrals, stats
+    │   │   ├── alerts.py           ← alert management, acknowledge, resolve
+    │   │   ├── referrals.py        ← referral accept/decline
+    │   │   └── profile.py          ← facility profile, capabilities update
+    │   │
+    │   └── admin/
+    │       ├── auth.py             ← admin login
+    │       └── insight.py          ← insights, reports, heatmap data
+    │
+    ├── Ai_Analysis/
+    │   ├── ai_assistant.py         ← main AI assistant logic
+    │   ├── classifier.py           ← loads all ML models, exposes predict functions
+    │   ├── context_builder.py      ← builds full user context from DB for LLM
+    │   ├── interpreter.py          ← Groq LLM calls, prompt construction
+    │   ├── dataset_interpreter.py  ← dataset knowledge for AI context
+    │   ├── pipeline.py             ← orchestrates ML → LLM → response
+    │   │
+    │   ├── Models/                 ← trained .joblib files (not committed)
+    │   │   ├── risk_classifier.joblib
+    │   │   ├── repeat_loss_predictor.joblib
+    │   │   ├── care_seeking_predictor.joblib
+    │   │   ├── cultural_profile_segmenter.joblib
+    │   │   ├── isolation_detector.joblib
+    │   │   ├── facility_delivery_predictor.joblib
+    │   │   ├── service_gap_cluster.joblib
+    │   │   ├── vulnerability_index.csv
+    │   │   └── service_gap_analysis.csv
+    │   │
+    │   ├── Datasets/               ← research CSV files (not committed)
+    │   │   ├── ddi_pds_data.csv
+    │   │   ├── ddi_hfs_data.csv
+    │   │   ├── woman_final.csv
+    │   │   ├── AKU_baseline.csv
+    │   │   ├── AKU_endline.csv
+    │   │   ├── pamanech_woman_data.csv
+    │   │   └── W1 Mother Focal Child File-ANON.csv
+    │   │
+    │   └── Training/               ← run once to train models
+    │       ├── train_risk_classifier.py
+    │       ├── train_repeat_loss_predictor.py
+    │       ├── train_care_seeking_predictor.py
+    │       ├── train_cultural_profile_segmenter.py
+    │       ├── train_isolation_detector.py
+    │       ├── train_facility_delivery_predictor.py
+    │       ├── train_service_gap_cluster.py
+    │       └── build_social_vulnerability_index.py
+    │
+    ├── OfflineCom/                 ← offline access layer
+    │   ├── ussd.py                 ← USSD webhook handler (Africa's Talking)
+    │   ├── voice.py                ← voice call AI handler
+    │   ├── ai.py                   ← offline AI logic
+    │   ├── location_utils.py       ← GPS and location helpers
+    │   └── session_store.py        ← USSD session management
+    │
+    └── utils/
+        ├── decorators.py           ← role-based auth decorators
+        ├── chw_assignment.py       ← automatic CHW matching logic
+        └── __init__.py
+```
 
-## Usage
+---
 
-The package needs to be configured with your app username and API key, which you can get from the [dashboard](https://account.africastalking.com/). Note that all functions accept an optional `timeout` argument, but have a set default.
+## ML models
 
-> You can use this SDK for either production or sandbox apps. For sandbox, the app username is **ALWAYS** `sandbox`
+Eight models trained on five published research datasets covering 6,560 patient records, 328 health facilities, and 127 community health volunteers across Kenya.
+
+| Model | Algorithm | Dataset | What it drives |
+|---|---|---|---|
+| Risk Classifier | Random Forest | ddi_pds_data.csv | Emergency alerts, referral urgency, mascot mood |
+| Repeat Loss Predictor | Logistic Regression | ddi_pds_data.csv | CHW priority, reminder intensity |
+| Care Seeking Predictor | Gradient Boosting | woman_final.csv | Post-referral CHW assignment |
+| Service Gap Cluster | KMeans | ddi_pds + ddi_hfs | Admin heatmap, county prioritisation |
+| Social Vulnerability Index | Composite score | W1 Mother Focal Child | SafeRecovery Hub routing, CHW assignment |
+| Facility Delivery Predictor | Random Forest | pamanech_woman_data.csv | Prevention flag, home delivery risk |
+| Cultural Profile Segmenter | KMeans | AKU_baseline.csv | AI assistant tone personalisation |
+| Isolation Detector | Gradient Boosting | W1 Mother Focal Child | Proactive CHW outreach trigger |
+
+---
+
+## AI pipeline architecture
+
+```
+Woman reports symptoms
+        ↓
+Layer 1 — ML Models (scikit-learn)
+classifier.py runs risk, repeat loss, care seeking, isolation, cultural models
+        ↓
+Layer 2 — Context Builder
+context_builder.py queries DB — mood trend, behaviour, pregnancy history, care network
+        ↓
+Layer 3 — LLM Interpretation (Groq — LLaMA3-70B)
+interpreter.py builds prompt, sends to Groq, parses structured JSON response
+        ↓
+App acts — warm chat message, CHW assigned, alert fired, mascot mood set
+```
+
+---
+
+## Authentication
+
+Five actor types, each with their own login and role-based access:
+
+| Actor | Auth method | Token location |
+|---|---|---|
+| Patient | Passwordless OTP via phone | httpOnly cookie |
+| CHW | Email + password | httpOnly cookie |
+| Facility | Email + password | httpOnly cookie |
+| NGO | Email + password | httpOnly cookie |
+| Admin | Email + password | httpOnly cookie |
+
+Role is baked into the JWT as a claim. Custom decorators protect every route:
 
 ```python
-# import package
-import africastalking
-
-
-# Initialize SDK
-username = "YOUR_USERNAME"    # use 'sandbox' for development in the test environment
-api_key = "YOUR_API_KEY"      # use your sandbox app API key for development in the test environment
-africastalking.initialize(username, api_key)
-
-
-# Initialize a service e.g. SMS
-sms = africastalking.SMS
-
-
-# Use the service synchronously
-response = sms.send("Hello Message!", ["+2547xxxxxx"])
-print(response)
-
-# Or use it asynchronously
-def on_finish(error, response):
-    if error is not None:
-        raise error
-    print(response)
-
-sms.send("Hello Message!", ["+2547xxxxxx"], callback=on_finish, timeout=(3, 6))    
-
+@bp.route('/profile', methods=['GET'])
+@patient_required
+def get_profile():
+    user_id = get_current_user_id()
+    ...
 ```
 
-See [example](example/) for more usage examples.
+---
 
+## API endpoints overview
 
-## Initialization
+```
+Patient
+  POST   /api/patient/auth/register
+  POST   /api/patient/auth/request-otp
+  POST   /api/patient/auth/login
+  POST   /api/patient/auth/logout
+  GET    /api/patient/auth/me
+  GET    /api/patient/home
+  GET    /api/patient/chat/conversations
+  POST   /api/patient/chat/send
+  POST   /api/patient/recovery/checkin
+  GET    /api/patient/recovery/checkins
+  GET    /api/patient/community/posts
+  POST   /api/patient/community/posts
+  GET    /api/patient/reminders
+  POST   /api/patient/reminders
+  POST   /api/patient/emergency/alert
+  GET    /api/patient/map/facilities
 
-Initialize the SDK by calling `africastalking.initialize(username, api_key)`. After initialization, you can get instances of offered services as follows:
+CHW
+  POST   /api/chw/auth/register
+  POST   /api/chw/auth/login
+  GET    /api/chw/dashboard
+  GET    /api/chw/cases
+  GET    /api/chw/cases/<id>
+  PATCH  /api/chw/cases/<id>/update
+  POST   /api/chw/cases/<id>/escalate
 
-- [SMS](#sms): `africastalking.SMS`
-- [Airtime](#airtime): `africastalking.Airtime`
-- [Voice](#voice): `africastalking.Voice`
-- [Token](#token): `africastalking.Token`
-- [Application](#application): `africastalking.Application`
-- [Mobile Data](#mobiledata): `africastalking.MobileData`
-- [Insights](#insights): `africastalking.Insights`
-- [Whatsapp](#whatsapp): `africastalking.Whatsapp`
+Facility
+  POST   /api/facility/auth/register
+  POST   /api/facility/auth/login
+  GET    /api/facility/dashboard
+  GET    /api/facility/alerts
+  PATCH  /api/facility/alerts/<id>/acknowledge
+  GET    /api/facility/referrals
+  PATCH  /api/facility/referrals/<id>
+  PUT    /api/facility/capabilities
 
-### `Application`
+Admin
+  POST   /api/admin/auth/login
+  GET    /api/admin/insights
+  GET    /api/admin/insights/service-gaps
+  GET    /api/admin/insights/reports
 
-- `fetch_application_data()`: Get app information. e.g balance.
+Offline
+  POST   /api/ussd                  
+  POST   /api/voice                 
 
-### `Airtime`
-
-- `send(recipients: [dict])`: Send airtime
-
-    - `recipients`: Contains an array of arrays containing the following keys
-    
-        - `phone_number`: Recipient of airtime
-        - `amount`: Amount to send with currency e.g `100`
-        - `currency_code`: 3-digit ISO format currency code (e.g `KES`, `USD`, `UGX` etc).
-
-- `max_num_retry`: This allows you to specify the maximum number of retries in case of failed airtime deliveries due to various reasons such as telco unavailability. The default retry period is 8 hours and retries occur every 60 seconds. For example, setting `max_num_retry=4` means the transaction will be retried every 60 seconds for the next 4 hours. `OPTIONAL`.
-
-### `Sms`
-
-- `send(message: str, recipients: [str], sender_id: str = None, enqueue: bool = False)`: Send a message.
-
-    - `message`: SMS content. `REQUIRED`
-    - `recipients`: An array of phone numbers. `REQUIRED`
-    - `sender_id`: Shortcode or alphanumeric ID that is registered with your Africa's Talking account.
-    - `enqueue`: Set to `true` if you would like to deliver as many messages to the API without waiting for an acknowledgement from telcos.
-
-- `send_premium(message: str, short_code: str, recipients: [str], link_id: [str] = None, retry_duration_in_hours [int] = None)`: Send a premium SMS
-
-    - `message`: SMS content. `REQUIRED`
-    - `short_code`: Your premium product shortCode. `REQUIRED`
-    - `recipients`: An array of phone numbers. `REQUIRED`
-    - `keyword`: Your premium product keyword.
-    - `link_id`: We forward the `linkId` to your application when a user sends a message to your onDemand service
-    - `retry_duration_in_hours`: This specifies the number of hours your subscription message should be retried in case it's not delivered to the subscriber
-
-- `fetch_messages(last_received_id: int = 0)`: Fetch your messages
-
-    - `last_received_id`: This is the id of the message you last processed. Defaults to `0`
-
-- `create_safaricom_subscription(short_code: str, keyword: str, phone_number: str, request_id: str, redirect_url: str, source_ip: str, user_agent: str)`: Create a premium Safaricom subscription
-
-    - `short_code`: Premium short code mapped to your account. `REQUIRED`
-    - `keyword`: Premium keyword under the above short code and is also mapped to your account. `REQUIRED`
-    - `request_id`: Request id associated with the request.
-    - `redirect_url`: URL that the user will be redirected to after they have confirmed their subscription. 
-    - `phone_number`: PhoneNumber to be subscribed.
-    - `source_ip`: IP address the subscribing party is originating from.
-    - `user_agent`: String stating which browser was used to access the content.
-
-### `Voice`
-
-- `call(callFrom: str, callTo: [str])`: Initiate a phone call
-
-	- `callFrom`: Phone number on Africa's Talking (in international format). `REQUIRED`
-    - `callTo`: An array of phone numbers that you wish to dial (in international format). `REQUIRED`    
-
-- `fetch_queued_calls(phone_number: str)`: Get queued calls
-
-    - `phone_number`: Phone number mapped to your Africa's Talking account (in international format). `REQUIRED`
-
-- `upload_media_file(phone_number: str, url: str)`: Upload voice media file
-
-    - `phone_number`: phone number mapped to your Africa's Talking account (in international format). `REQUIRED`
-    - `url`: The url of the file to upload. Should start with `http(s)://`. `REQUIRED`
-
-### `Token`
-
-- `generate_auth_token()`: Generate an auth token to use for authentication instead of an API key.
-
-### `MobileData`
-
-- `send(product_name: str, recipients: dict)`: Send mobile data to customers.
-
-    - `product_name`: Payment product on Africa's Talking. `REQUIRED`
-    - `recipients`:  A list of recipients. Each recipient has:
-      - `phoneNumber`: Customer phone number (in international format). `REQUIRED`
-      - `quantity`: Mobile data amount. `REQUIRED`
-      - `unit`: Mobile data unit. Can either be `MB` or `GB`. `REQUIRED`
-      - `validity`: How long the mobile data is valid for. Must be one of `Day`, `Week` and `Month`. `REQUIRED`
-      - `metadata`: Additional data to associate with the transaction. `OPTIONAL`
-
-- `find_transaction(transaction_id: str)`: Find a mobile data transaction.
-
-- `fetch_wallet_balance()`: Fetch a mobile data product balance.
-
-### `Insights`
-
-- `check_sim_swap_state(phone_numbers: [str])`: Check the sim swap state of a given [array of ] phone number(s).
-
-### `Whatsapp`
-
-- `send(body: dict, wa_number: str, phone_number: str)`: Send a whatsapp message to a given phone number.
-
-    - `wa_number`: The number being used to send the message that is associated with the account. `REQUIRED`
-    - `phone_number`: The number that is to receive the message. `REQUIRED`
-    - `body`:  The message to be sent. The message has a combination of the following:
-      - `message`: The message to be sent to the client. `OPTIONAL`
-      - `mediaType`: The type of message being sent Can be one of `Image`, `Video`, `Audio` or `Voice`. `OPTIONAL`
-      - `url`: The hosted URL of what is being sent. `OPTIONAL`
-      - `caption`: The caption associated with an image or video that is being sent. `OPTIONAL`
-      - `action`: A dictionary with a list of actions. `OPTIONAL`
-      - `body`: A dictionary containing what is being sent with the interactive button or list. `OPTIONAL`
-      - `header`: A dictionary containing what header is being sent with the interactive button or list.`OPTIONAL`
-      - `footer`: A dictionary containing what footer is being sent with the interactive button or list.`OPTIONAL`
-
-- `send_template(component: dict, wa_number: str, name: str, language: str, category: str)`: Send a Whatsapp template for your future messages.
-
-    - `wa_number`: The Whatsapp phone number that will be used to send the messages associated with the template. `REQUIRED`
-    - `name`: The name of the template. This must be unique. `REQUIRED`
-    - `language`: The language code associated with the template. `REQUIRED`
-    - `category`: The category associated with the template. `REQUIRED`
-    - `component`:  A complex type containing the values that will be in the template. It can contain the following types:
-      - `header`: The header of the template to be sent. `OPTIONAL`
-      - `body`: The type of message being sent in the body of the template. `OPTIONAL`
-      - `footer`: The footer of the template to be sent. `OPTIONAL`
-      - `buttons`: A list of buttons to be sent in the template. `OPTIONAL`
-
-### `Ussd`
-
-For more information, please read [https://developers.africastalking.com/docs/ussd](https://developers.africastalking.com/docs/ussd/overview)
-
-
-## Development
-```shell
-$ git clone https://github.com/AfricasTalkingLtd/africastalking-python.git
-$ cd africastalking-python
-$ python3 -m unittest
+Public
+  GET    /api/ping                  ← health check
+  GET    /api/facilities            ← public facility list for map
 ```
 
-## Issues
+---
 
-If you find a bug, please file an issue on [our issue tracker on GitHub](https://github.com/AfricasTalkingLtd/africastalking-python/issues).
+## mushieh edison ai
+
+**Prerequisites:** Python 3.8+, PostgreSQL running locally or on Railway
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/yourname/safemumAPI.git
+cd safemumAPI
+
+# 2. Create and activate virtual environment
+python -m venv safemum
+safemum\Scripts\activate        # Windows
+source safemum/bin/activate     # Mac / Linux
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Set up environment variables
+cp .env.example .env
+# Edit .env and fill in your values
+
+# 5. Run database migrations
+flask db upgrade
+
+# 6. Start the server
+python app.py
+```
+
+Server runs on `http://localhost:5000`
+
+---
+
+## Environment variables
+
+Create a `.env` file at the root. See `.env.example` for the template.
+
+```
+DATABASE_URL=postgresql://user:password@localhost:5432/safemum
+JWT_SECRET_KEY=your-long-random-secret-key
+GROQ_API_KEY=your-groq-api-key
+AFRICASTALKING_API_KEY=your-at-api-key
+AFRICASTALKING_USERNAME=your-at-username
+FRONTEND_URL=http://localhost:5173
+FLASK_ENV=development
+FLASK_APP=app.py
+PORT=5000
+```
+
+---
+
+## Training the ML models
+
+Models are pre-trained and saved as `.joblib` files in `SafeMumApp/Ai_Analysis/Models/`. If you need to retrain:
+
+```bash
+cd SafeMumApp/Ai_Analysis/Training
+
+python train_risk_classifier.py
+python train_repeat_loss_predictor.py
+python train_care_seeking_predictor.py
+python train_cultural_profile_segmenter.py
+python train_isolation_detector.py
+python train_facility_delivery_predictor.py
+python train_service_gap_cluster.py
+python build_social_vulnerability_index.py
+```
+
+Datasets must be present in `SafeMumApp/Ai_Analysis/Datasets/` before running. Datasets and trained model files are excluded from version control via `.gitignore`.
+
+---
+
+## Deployment on Railway
+
+1. Push repo to GitHub
+2. Create new project on Railway and connect the repo
+3. Add all environment variables from `.env` in the Railway dashboard
+4. Set the start command: `gunicorn app:app`
+5. Railway auto-deploys on every push to main
+
+---
+
+## Related
+
+- **mushieh edison ai:** [github.com/yourname/SAFEMUM](https://github.com/yourname/SAFEMUM)
+- **Hackathon:** AI for Reproductive Health in Africa 2026 — Track I
+- **Team:** SafeMum AI — Horizon Tech Solution, Buea, Cameroon
